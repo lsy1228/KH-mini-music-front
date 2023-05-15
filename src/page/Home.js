@@ -179,7 +179,7 @@ const LogOut=styled.div`
     justify-content: center;
     align-items: center;
     color: #ccc;
-    width: 100px;
+    width: 80px;
     cursor: pointer;
 
     &:hover{
