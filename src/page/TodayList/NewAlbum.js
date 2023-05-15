@@ -110,7 +110,7 @@ const NewAlbum = () =>{
                         <div className="artist">{e.artist}</div>
                 </div>
             </Container_in>
-            ))};
+            ))}
                 {selectedAlbum && (     // 참일 때 선택한 앨범이 있을 때 AlbumInfo가 렌더링
                     <AlbumInfo 
                     open={modalOpen}    

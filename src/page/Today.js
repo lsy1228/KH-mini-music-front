@@ -184,7 +184,7 @@ const Today=()=>{
                 <Button key={c.name} active={category === c.name} onClick={()=>onSelect(c.name)}> 
                     {c.name}
                 </Button>
-            ))};
+            ))}
             </Head>
     
         

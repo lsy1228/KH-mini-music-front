@@ -39,7 +39,7 @@ const Container = styled.div`
 
 // 사이드 바 
 const Side = styled.div`
-    width: 300px; 
+    width: 200px; 
     height: calc(100vh - 40px);
     display: flex;
     flex-direction:column;
