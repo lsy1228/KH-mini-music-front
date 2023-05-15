@@ -269,7 +269,7 @@ const Home =() => {
     // 로그아웃 
     const onLogOut=()=>{
       window.localStorage.setItem("userIdSuv", "");
-      window.localStorage.setItem("isLoginSuv", "FALSE");
+      window.localStorage.setItem("isLoginSuv", "FALSE"); 
       window.location.replace("/");
     };
 
