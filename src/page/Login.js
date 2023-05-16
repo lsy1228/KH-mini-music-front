@@ -146,7 +146,7 @@ const LoginPage =()=>{
                 <Container></Container>
                 <Input placeholder="ID" value ={inputId} onChange={onChangeId}/>
                 <Container></Container>
-                <Input placeholder="Password" value ={inputPw} onChange={onChangePw}/>
+                <Input placeholder="Password" type="password" value ={inputPw} onChange={onChangePw}/>
                 <Container></Container>
                 <Button  onClick={onClickLogin} >LOGIN</Button>
                 <Container></Container>
@@ -160,6 +160,7 @@ const LoginPage =()=>{
         </Body>
     );
 };
+
 
 
 export default LoginPage;

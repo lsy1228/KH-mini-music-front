@@ -15,6 +15,7 @@ const UserStore = (props) => {
     const [albumName,setAlbumName] = useState("");
     const [lyrics,setLyrics] = useState("");
     const [likeCount, setLikeCount] = useState("");
+    const [payUrl, setPayUrl] = useState(""); 
 
     const [playing, setPlaying] = useState(false); // 재생 상태
     const [playingIndex, setPlayingIndex] = useState(-1); // 재생중인 곡의 인덱스
@@ -46,6 +47,7 @@ const UserStore = (props) => {
             currentSong, setCurrentSong,
             Audio,
             title, setTitle,
+            payUrl, setPayUrl,
             artist, setArtist,
             playImg, setPlayImg}}>
             {props.children}

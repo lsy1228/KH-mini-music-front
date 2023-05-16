@@ -28,15 +28,18 @@ const Container_body = styled.div`
     align-items: center;
     line-height: 120%;
     color:  white;
+
     .infoPage{
         width: 300px;
         font-size: 12px;
     }
+    
     .selecPage{
         font-size: 13px;
         font-weight: bolder;
         line-height: 90%;
     }
+
     .select{
         width: 300px;
         height: 25px;
@@ -163,7 +166,7 @@ const Secession =()=>{
                     *비밀번호 입력 시 회원이 탈퇴됩니다.
                 </div>
                 <Container></Container>
-                <Input placeholder="Password" value ={inputPw} onChange={onChangePw}/>                
+                <Input placeholder="Password" type="password" value ={inputPw} onChange={onChangePw}/>                
                 <Container></Container>
                 <div className="selecPage">
                     <span>무엇이 불편하셨나요?</span><p/>

@@ -28,40 +28,45 @@ const InerContainer = styled.div`
         margin: auto;
         justify-content: center;
         align-items: center;
-    }
-    input {
-        height: 40px;
-        width: 250px;
-        background-color: #d4cacd;
-        border-style: none;
-        border-radius: 10px;
-    }
-    label {
-        display: inline-block;
-        width: 150px;
-        text-align: left;
-        margin-right: 90px;
-        margin-top: 10px;
-        font-size: 13px;
-        font-weight: 500;
-        color: white;
-        
-    }
+        }
+
+        input {
+            height: 40px;
+            width: 250px;
+            background-color: #d4cacd;
+            border-style: none;
+            border-radius: 10px;
+        }
+
+        label {
+            display: inline-block;
+            width: 150px;
+            text-align: left;
+            margin-right: 90px;
+            margin-top: 10px;
+            font-size: 13px;
+            font-weight: 500;
+            color: white;
+            
+        }
+
     .hint {
       display: flex;
-      margin-bottom: 10px;
-      margin-right: 40px;
+      margin: 5px 0px 0px 8px;
       justify-content:right;
       align-items:center;
       font-size: 12px;
       color: #999;
     }
+
     .success {
         color: royalblue;
     }
+
     .error {
         color: red;
     }
+
     .itemGender label {
         display: inline-block;
         width: 150px;
@@ -74,6 +79,7 @@ const InerContainer = styled.div`
         margin-right: 15px;
         margin-left: 15px;
     }
+
     .itemPhone {
         width: 240px;
         justify-content: center;
@@ -81,20 +87,21 @@ const InerContainer = styled.div`
         margin-left: 35px;
     }
 
-    .year,
-    .month,
     .days {
         width: 70px;
         margin: 7px;
         font-weight: bold;
     }
+
     .gender {
         width: 15px;
         margin: 10px 20px;
     }
+
     span {
         color: white;
     }
+
     .select {
         margin-bottom: 10px;
         width: 250px;
@@ -103,39 +110,48 @@ const InerContainer = styled.div`
         border-style: none;
         border-radius: 10px;
     }
+
     .phoneNum {
         width: 240px;
         margin-bottom: 10px;
     }
+    
     .phoneNumBtn {
         margin-left: 10px;
         height: 40px;
     }
+
     button {
         border-style: none;
         color: white;
         background: #b12548;
         border-radius: 10px;
     }
+
     .phoneNumCH {
         margin-bottom: 10px;
         text-align: center;
     }
+
     .addrInput {
         margin-bottom: 10px;
     }
+
     .addrFind {
         margin-bottom: 10px;
         margin-right: 10px;
         width: 170px;
     }
+
     .addrBtn {
         height: 40px;
     }
+
     .submitBtn {
         align-items: center;
         justify-content: center;
     }
+
     .enable-button {
     margin-top: 20px;
     margin-left: 30px;
@@ -152,6 +168,7 @@ const InerContainer = styled.div`
     font-weight: 700;
     border-radius: 10px;
   }
+
   .enable-button:active {
     margin-top: 20px;
     margin-left: 30px;
@@ -171,6 +188,7 @@ const InerContainer = styled.div`
         border: 1px solid black;
     }
   }
+
   .disable-button {
     margin-top: 20px;
     margin-left: 30px;
@@ -187,11 +205,12 @@ const InerContainer = styled.div`
     font-weight: 400;
     border-radius: 10px;
   }
+
   .inputEmail {
     width: 200px;
     margin-bottom: 10px;
   }
-  `;
+`;
 
 const SignUp = () => {
 
@@ -204,7 +223,6 @@ const SignUp = () => {
     const [inputName, setInputName] = useState("");
     const [inputEmail, setInputEmail] = useState("");
     const [inputPhone, setInputPhone] = useState("");
-    const [inputAddr, setInputAddr] = useState("");
     const [inputRrn, setInputRrn] = useState("");
 
     // 오류 메시지
@@ -213,7 +231,6 @@ const SignUp = () => {
     const [conPwMessage, setConPwMessage] = useState("");
     const [emailMessage, setEmailMessage] = useState("");
     const [phoneMessage, setPhoneMessage] = useState("");
-    const [addrMessage, setAddrMessage] = useState("");
     const [rrnMessage, setRrnMessage] = useState("");
     
 
@@ -224,7 +241,6 @@ const SignUp = () => {
     const [isName, setIsName] = useState(false);
     const [isEmail, setIsEmail] = useState(false);
     const [isPhone, setIsPhone] = useState(false);
-    const [isAddr, setIsAddr] = useState(false);
     const [isRrn, setIsRrn] = useState(false); 
 
     //저장된 주소와 아이디값을 설정하여 주소는 받아오고 아이디값은 저장한다.
@@ -257,7 +273,7 @@ const SignUp = () => {
     
     //아이디 정규식
     const onChangId =(e) => {
-        const inputIdRegex = /^[a-zA-z0-9]{4,12}$/ // 아이디 정규식
+        const inputIdRegex = /^[a-zA-Z0-9]{4,12}$/ // 아이디 정규식
         const idCurrent = e.target.value;
         setSignUpId(e.target.value);
         setInputId(idCurrent);
@@ -361,11 +377,7 @@ const SignUp = () => {
   
 
     const onClickLogin = async() => {
-
         console.log("Click 회원가입");
-        navigate('/welcome');
-        
-
         // 가입 여부 우선 확인
         const memberCheck = await AxiosMini.memberRegCheck(inputId);
         console.log("가입 가능 여부 확인 : ", memberCheck.data);
@@ -378,7 +390,7 @@ const SignUp = () => {
             const memberReg = await AxiosMini.memberReg(inputId, inputPw, inputConPw, addr, inputName, inputEmail, inputPhone, inputRrn);
             console.log(addr);
             console.log(memberReg.data.result);
-            if(memberReg.data === true) {
+            if(memberReg.data.result === true) {
                 navigate('/welcome');
             } else {
                 setModalOpen(true);
@@ -400,7 +412,7 @@ const SignUp = () => {
             </div>
             <br />
             <div className="item">
-                <label className="ID">아이디</label>
+                <label className="ID">아이디</label>        
                 <br />
                 <input type="text" className="ID" value={inputId} onChange={onChangId}/>
             </div>
@@ -444,8 +456,12 @@ const SignUp = () => {
             </div>
             <div className="itemBD">
             <label className="BD">주민등록번호</label>
-                <br />
-                <input type="text"  placeholder="ex)230502 3******" value={inputRrn} onChange={onChangeRrn}/>
+            <br />
+                <input type="text"   placeholder="ex)230502 3******" value={inputRrn} onChange={onChangeRrn}/>
+                    <div className="hint">
+                    {inputRrn.length > 0 && (
+                    <span className={`message ${isRrn ? 'success' : 'error'}`}>{rrnMessage}</span>)}
+                    </div>
             </div>
             <div className="itemGender">
                 <label>성별</label>

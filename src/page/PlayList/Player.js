@@ -6,10 +6,8 @@ import { UserContext } from "../../context/UserInfo";
 const PlayerContainer = styled.div`
     width: 100%;
     height: 50px;
-    padding-bottom: 10px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     box-sizing: border-box;
     background-color: rgba(31, 31, 31, 1);
 
@@ -17,13 +15,12 @@ const PlayerContainer = styled.div`
         display: flex;
         justify-content: center;
         color: white;
-        width: 300px;
+        width: 400px;
         font-weight: bolder;
-        padding-bottom: 10px;
+        height: 30px;
     }
 
     img {
-        margin-left:10px;
         width: 33px;
         height: 33px;
     }
@@ -53,10 +50,9 @@ const PlayerContainer = styled.div`
         justify-content: space-evenly;
 
         .btn {
-            justify-content: space-around;
             align-items: center;
+            justify-content: center;
             display: flex;
-            min-width:100px;
             flex-grow:1;
         }
 
@@ -71,7 +67,7 @@ const PlayerContainer = styled.div`
             font-size: 1.4rem;
             color: rgb(255, 19, 80);
             cursor: pointer;
-            padding-bottom: 5px;
+            padding: 0 8% 5px 8%;
         }
     }
 `;
@@ -150,8 +146,7 @@ const Player = () => {
                 </div>
             </div>
             <div className="controls">
-                <div className="playImg">{playing && <img src={playImg}/>}</div>
-                <div className="playTitle">{title}</div>
+                <div className="playTitle">{playing && <img src={playImg} style={{marginRight:60}}/>}{title}</div>
                 <div className="btn">
                     <BsFillSkipStartFill className="btn_action" onClick={()=>skipBack()} />
                     {playing ? <BsFillPauseFill className="btn_action_pp" onClick={()=>onClick()} /> : <BsFillPlayFill className="btn_action_pp" onClick={()=>onClick()} />}    

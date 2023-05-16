@@ -186,7 +186,7 @@ const MyPage =(props)=>{
                             }}>
                             <h2>{pm.name}</h2> <br/> <span>{pm.info}</span>
                         </InnerContain>
-                    ))};
+                    ))}
                     
                     </div>
                     <div className="partition">
@@ -198,7 +198,7 @@ const MyPage =(props)=>{
                             }}>
                             <h2>{pm.name}</h2> <br/> <span>{pm.info}</span>
                         </InnerContain>
-                    ))};
+                    ))}
                     </div>
                 </div>
             </Body>
