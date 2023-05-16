@@ -91,7 +91,7 @@ const ModalStyle = styled.div`
 `;
 
 const Modal = (props) => {
-    const { open, close, type, header, children, check } = props;
+    const { open, close, type, header, children } = props;
 
     console.log("Modal Component : " + type);
 
@@ -108,7 +108,7 @@ const Modal = (props) => {
                     </header>
                     <main>{children}</main>
                     <footer>
-                        {type && <button onClick={check}>확인</button>}
+                        {type && <button onClick={close}>확인</button>}
                         <button onClick={close}>취소</button>
                     </footer>
                 </section>
