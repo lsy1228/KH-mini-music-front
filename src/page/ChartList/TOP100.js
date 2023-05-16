@@ -4,6 +4,7 @@ import AxiosMini from "../../api/AxiosMini";
 import {FaPlay, FaPause} from 'react-icons/fa';
 import { UserContext } from "../../context/UserInfo";
 import {BsHeart, BsHeartFill} from 'react-icons/bs';
+import { useNavigate } from "react-router-dom";
 
 const Body = styled.div`
         margin: 0;
@@ -95,10 +96,11 @@ const Container_in = styled.div`
 
 const TOP100=()=>{
     const context = useContext(UserContext);
-    const {playing, setPlaying, setChart, chart ,playingIndex, setPlayingIndex, currentSong, setCurrentSong, Audio} = context;
+    const {playing, setPlaying, setChart, chart ,playingIndex, setPlayingIndex, currentSong, setCurrentSong, Audio, setTitle, setArtist, setPlayImg} = context;
 
-    const[clicked, setClicked] = useState(false);
-    const [clickIndex, setClickIndex] = useState(-1); // 클릭한 인덱스
+
+    const[clicked, setClicked] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(()=> {
         const chartSong = async() => {
@@ -108,24 +110,38 @@ const TOP100=()=>{
         chartSong();
     }, []);
     
-    const clickHeart = (index) =>{
-        setClicked(true);
-        setClickIndex(index);
-        if(clicked && clickIndex === index) { 
-            setClicked(!clicked);  
-        };
-    };
+    const clickHeart = async(index, songId) =>{
+        if(clicked.includes(index)) { // clicked 배열에 현재 index가 포함되어 있는지 확인, 포함되어 있으면 클릭된 상태
+            setClicked(clicked.filter((item)=> item !==index)); // 클릭이 된 경우, 클릭 취소
+        } else {    // 클릭되지 않은 경우
+            const value = window.localStorage.getItem("isLoginSuv");
+            if(value === "FALSE") {
+                navigate("/LoginPage");
+            } else {
+            const id = window.localStorage.getItem("userIdSuv");
+            console.log(id);
+            setClicked([...clicked, index]); // cliked 배열에 추가
+        }
+        }
+    }
+
 
     const playPause = (index) => {
         if(playing && playingIndex === index) { // 현재 재생중이고 인덱스가 같으면
             setPlaying(false);
             Audio.current.pause();  // 곡을 멈춤
             setPlayingIndex(-1);    // 재생 중인 곡의 인덱스를 -1로 변경
+            setTitle(chart[index].title);
+            setArtist(chart[index].artist);
+            setPlayImg(chart[index].cover_url);
         } else {
             setPlaying(true);
             setPlayingIndex(index);     // 재생 중인 곡의 인덱스를 변경
             Audio.current.src = chart[index].song_url;  // audio의 src를 해당 곡의 url로 변경
             Audio.current.play();   // 곡 재생
+            setTitle(chart[index].title);
+            setArtist(chart[index].artist);
+            setPlayImg(chart[index].cover_url);
         };
     };
 
@@ -138,18 +154,18 @@ const TOP100=()=>{
 
     return(
         <Body>
-            {chart && chart.map((x, index) => (
-            <Container_in key={x.id}>
-                <div className="ranking">{index+1}</div>                
-                <img src={x.cover_url}/>
-                <div className="TITLE">{x.title}</div>      
-                <div className="artist">{x.artist}</div>
-                {clicked && clickIndex === index ?<BsHeartFill className="heart" onClick={()=>clickHeart(index)}/> : <BsHeart className="heart" onClick={()=>clickHeart(index)}/>}
-                {playing && playingIndex === index ? <FaPause className="play" onClick={()=>playPause(index)}/> : <FaPlay className="play" onClick={()=>playPause(index)}/>}
-                <audio ref={Audio} onTimeUpdate={onPlaying}/>         
-            </Container_in>
-            ))}
-        </Body>
+        {chart && chart.map((x, index) => (
+        <Container_in key={x.id}>
+            <div className="ranking">{index+1}</div>    
+            <img src={x.cover_url}/>
+            <div className="TITLE">{x.title}</div>      
+            <div className="artist">{x.artist}</div>
+            {clicked.includes(index) ?<BsHeartFill className="heart FULL" onClick={()=>clickHeart(index, x.songId)}/> : <BsHeart className="heart" onClick={()=>clickHeart(index, x.songId)}/>}
+            {playing && playingIndex === index ? <FaPause className="play" onClick={()=>playPause(index)}/> : <FaPlay className="play" onClick={()=>playPause(index)}/>}
+            <audio ref={Audio} onTimeUpdate={onPlaying}/>         
+        </Container_in>
+        ))}
+    </Body>
     );
 };
 export default TOP100;

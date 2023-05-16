@@ -69,9 +69,7 @@ const AxiosMini = {
     // 이메일 인증
     mailCode : async(mail) => {
         return await axios.get(Story_Board + `/mail/?mail=${mail}`);
-    },
-
-
+    }
 };
 
 

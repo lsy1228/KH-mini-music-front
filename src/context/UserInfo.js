@@ -1,6 +1,7 @@
 import { createContext, useRef, useState } from "react"; 
 export const UserContext = createContext(null); 
 
+
 const UserStore = (props) => {
     const [userId, setUserId] = useState(""); 
     const [password, setPassword] = useState(""); 
@@ -8,7 +9,6 @@ const UserStore = (props) => {
     const [signUpId, setSignUpId] = useState("");
     const [addr, setAddr] = useState("");
     const [coverUrl, setCoverUrl] = useState("");
-    
     
     const [songTitle, setSongTitle] = useState("");
     const [songArtist, setSongArtist] = useState("");
@@ -21,7 +21,9 @@ const UserStore = (props) => {
     const [chart, setChart] = useState([]); // chart 데이터
     const [songUrl, setSongUrl] = useState("");
     const [currentSong, setCurrentSong] = useState("");
-    const [payUrl,setPayUrl]  = useState("");
+    const [title, setTitle] = useState("");
+    const [artist, setArtist] = useState("");
+    const [playImg, setPlayImg] = useState("");
     const Audio = useRef(null);
     
     return (
@@ -42,12 +44,13 @@ const UserStore = (props) => {
             chart, setChart,
             songUrl, setSongUrl,
             currentSong, setCurrentSong,
-            payUrl,setPayUrl,
-            Audio}}>
+            Audio,
+            title, setTitle,
+            artist, setArtist,
+            playImg, setPlayImg}}>
             {props.children}
         </UserContext.Provider>   
     );
 };
-
 
 export default UserStore; 

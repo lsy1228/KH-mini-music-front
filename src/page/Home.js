@@ -28,7 +28,7 @@ const ContainerWhole=styled.div`
 `;
 
 const Container = styled.div`
-    height: calc(100vh - 40px);
+    height: calc(100vh - 50px);
     margin: 0;
     padding: 0;
     display: flex;
@@ -40,7 +40,7 @@ const Container = styled.div`
 // 사이드 바 
 const Side = styled.div`
     width: 300px; 
-    height: calc(100vh - 40px);
+    height: calc(100vh - 50px);
     display: flex;
     flex-direction:column;
     overflow-y: scroll;
@@ -207,8 +207,7 @@ const MyInfo = [
 const Home =() => { 
     //Context에서 값 읽기 
     const context = useContext(UserContext);
-    const {playing, setPlaying} = context;
-    const {isLogin, setIsLogin, setSongTitle, setSongArtist, setAlbumName, setLyrics, setCoverUrl} = context;
+    const {isLogin, setIsLogin, setSongTitle, setSongArtist, setAlbumName, setLyrics, setCoverUrl, songUrl, setPlaying, setSongUrl} = context;
    
   
  
@@ -244,21 +243,21 @@ const Home =() => {
       if(e.key==='Enter'){
         onFindSong();
         setChangeSide("Enter");
+        setPlaying(false); 
       }; 
     }; 
 
     //비동기 통신으로 받아온 노래 이름과 아티스트 이름으로 URL을 검색한다.
     const onFindSong=async()=>{
       const songFind = await AxiosApi.songFind(inputSongName);
-      console.log(inputSongName);
-      console.log("여기까지");
-      console.log(songFind.data);
       setCoverUrl(songFind.data[0].cover_url);
       setAlbumName(songFind.data[0].albumName);
       setSongArtist(songFind.data[0].artist);
       setSongTitle(songFind.data[0].title);
       setLyrics(songFind.data[0].lyrics);
+      setSongUrl(songFind.data[0].song_url); 
     };
+
 
     //노래 이름을 검색
     const onChangeSong =e=>{
@@ -324,7 +323,7 @@ const Home =() => {
           </Mainbody>
         </Container>    
               <PlayBar>
-                 <Player isplaying={playing} />
+                 <Player  />
               </PlayBar>
       </ContainerWhole>
     );
