@@ -378,31 +378,31 @@ const SignUp = () => {
 
     const onClickLogin = async() => {
         console.log("Click 회원가입");
-        // 가입 여부 우선 확인
-        const memberCheck = await AxiosMini.memberRegCheck(inputId);
-        console.log("가입 가능 여부 확인 : ", memberCheck.data);
-
-        // 가입 여부 확인 후 가입 절차 진행
-        if (memberCheck.data === true) {
-            console.log("가입된 아이디가 없습니다. 다음 단계 진행 합니다.");
-
-
-            const memberReg = await AxiosMini.memberReg(inputId, inputPw, inputConPw, addr, inputName, inputEmail, inputPhone, inputRrn);
-            console.log(addr);
-            console.log(memberReg.data.result);
-            if(memberReg.data.result === true) {
-                navigate('/welcome');
-            } else {
-                setModalOpen(true);
-                setModelText("회원 가입에 실패 했습니다.");
-            }
-
-        } else {
-            console.log("이미 가입된 회원 입니다.")
-            setModalOpen(true);
-            setModelText("이미 가입된 회원 입니다.");
-        } 
-    }
+         // 가입 여부 우선 확인
+         const memberCheck = await AxiosMini.memberRegCheck(inputId);
+         console.log("가입 가능 여부 확인 : ", memberCheck.data);
+         // 가입 여부 확인 후 가입 절차 진행
+         
+         if (memberCheck.data === true) {
+             console.log("가입된 아이디가 없습니다. 다음 단계 진행 합니다.");
+ 
+ 
+             const memberReg = await AxiosMini.memberReg(inputId, inputPw, inputConPw, addr, inputName, inputEmail, inputPhone, inputRrn);
+             console.log(addr);
+             console.log(memberReg.data.result);
+             if(memberReg.data === true) {
+                 navigate('/welcome');
+             } else {
+                 setModalOpen(true);
+                 setModelText("회원 가입에 실패 했습니다.");
+             }
+ 
+         } else {
+             console.log("이미 가입된 회원 입니다.")
+             setModalOpen(true);
+             setModelText("이미 가입된 회원 입니다.");
+         } 
+     }
       
     return(
         <Container>
