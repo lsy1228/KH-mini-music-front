@@ -9,7 +9,9 @@ const UserStore = (props) => {
     const [signUpId, setSignUpId] = useState("");
     const [addr, setAddr] = useState("");
     const [coverUrl, setCoverUrl] = useState("");
-    
+    const [userName, setUserName] = useState(""); 
+    const [email, setEmail] = useState("");
+
     const [songTitle, setSongTitle] = useState("");
     const [songArtist, setSongArtist] = useState("");
     const [albumName,setAlbumName] = useState("");
@@ -29,6 +31,8 @@ const UserStore = (props) => {
     
     return (
         <UserContext.Provider value={{
+            userName, setUserName,
+            email, setEmail,
             userId, setUserId, 
             password, setPassword, 
             isLogin, setIsLogin,

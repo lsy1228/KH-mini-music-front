@@ -1,12 +1,12 @@
 import axios from "axios";
-const Story_Board = "http://localhost:8111";
+const Story_Board = "http://192.168.110.22:8111";
 
 
 
 
 const AxiosMini = {
      // 로그인
-     memberLogin: async(id, pw) => {
+     memberLogin: async(id, pw) => {    
         const login = {
             id : id,
             pwd : pw 
@@ -69,6 +69,15 @@ const AxiosMini = {
     // 이메일 인증
     mailCode : async(mail) => {
         return await axios.get(Story_Board + `/mail/?mail=${mail}`);
+    },
+
+    // 이메일 번호 
+    mailCodeck : async(mail, code) => {
+        const check = {
+            mail : mail,
+            code : code
+        }
+        return await axios.post(Story_Board + `/verify`, check);
     }
 };
 

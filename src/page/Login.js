@@ -89,7 +89,7 @@ const LoginPage =()=>{
     const navigate = useNavigate();
     //Context API에 값을 저장한다.
     const context = useContext(UserContext);
-    const {setUserId, setPassword,setIsLogin } = context;   
+    const {setUserId, setPassword } = context;   
     //id와 pw를 입력받는다.
     const [inputId,setInputId] = useState("");    
     const [inputPw,setInputPw] = useState("");
@@ -151,7 +151,7 @@ const LoginPage =()=>{
                 <Button  onClick={onClickLogin} >LOGIN</Button>
                 <Container></Container>
                 <Container>
-                <a href="#" className="findIdPW">forgot your ID /Password</a>
+                <a href="" className="findIdPW">forgot your ID/Password</a>
                 <a href="#" className="findIdPW"><Link to="/">Home</Link></a>
                 </Container>
                 <Modal open={modalOpen} type={true}  close={closeModal} header="오류">아이디 및 패스워드를 재확인 하세요.</Modal>

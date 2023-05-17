@@ -110,7 +110,7 @@ const TOP100=()=>{
         chartSong();
     }, []);
     
-    const clickHeart = async(index, songId) =>{
+    const clickHeart = async(index) =>{
         if(clicked.includes(index)) { // clicked 배열에 현재 index가 포함되어 있는지 확인, 포함되어 있으면 클릭된 상태
             setClicked(clicked.filter((item)=> item !==index)); // 클릭이 된 경우, 클릭 취소
         } else {    // 클릭되지 않은 경우
@@ -159,7 +159,7 @@ const TOP100=()=>{
             <div className="ranking">{index+1}</div>    
             <img src={x.cover_url}/>
             <div className="TITLE">{x.title}</div>      
-            <div className="artist">{x.artist}</div>
+            <div className="artist">{x.artist }</div>
             {clicked.includes(index) ?<BsHeartFill className="heart FULL" onClick={()=>clickHeart(index, x.songId)}/> : <BsHeart className="heart" onClick={()=>clickHeart(index, x.songId)}/>}
             {playing && playingIndex === index ? <FaPause className="play" onClick={()=>playPause(index)}/> : <FaPlay className="play" onClick={()=>playPause(index)}/>}
             <audio ref={Audio} onTimeUpdate={onPlaying}/>         

@@ -1,4 +1,4 @@
-import React, { useState ,useContext, useCallback} from "react";
+import React, { useState ,useContext } from "react";
 import styled from "styled-components";
 import imgLogo from "../../image/로고.png"
 import { useNavigate } from "react-router-dom";
@@ -6,7 +6,7 @@ import AxiosMini from "../../api/AxiosMini";
 import Modal from "../../util/Modal";
 import PopupPostCode from "../../api/PopupPostCode";
 import { UserContext } from "../../context/UserInfo";
-
+import { Link } from "react-router-dom";
 
 
 const Container = styled.div`
@@ -224,6 +224,9 @@ const SignUp = () => {
     const [inputEmail, setInputEmail] = useState("");
     const [inputPhone, setInputPhone] = useState("");
     const [inputRrn, setInputRrn] = useState("");
+    const [code, setCode] = useState("");
+    const [verificationResult, setVerificationResult] = useState("")
+
 
     // 오류 메시지
     const [idMessage, setIdMessage] = useState("");
@@ -338,6 +341,11 @@ const SignUp = () => {
         } 
     }
 
+  
+
+
+
+
     //전화번호 정규식
     const onChangePhone = (e) => {
         const inputPhoneRegex = /^\d{3}\d{3,4}\d{4}$/
@@ -373,6 +381,23 @@ const SignUp = () => {
 				//서버에서 생성한 랜덤한 인증 코드를 받아오는 API를 호출
         console.log(res.data);
 
+    }   
+
+
+      // 이메일 인증코드 유효성 검사
+      const onClickCode = async() => {
+        console.log(code);
+        if (code.length !== 6) {
+            setVerificationResult("잘못입력하셨습니다");
+            console.log(code);
+          }
+          const res = await AxiosMini.mailCodeck(inputEmail, code);
+          console.log(res.data);
+          if (res.data) {
+            setVerificationResult("인증이 완료되었습니다.");
+          } else {
+            setVerificationResult("인증 코드가 일치하지 않습니다.");
+          }
     }
   
 
@@ -385,8 +410,7 @@ const SignUp = () => {
          
          if (memberCheck.data === true) {
              console.log("가입된 아이디가 없습니다. 다음 단계 진행 합니다.");
- 
- 
+
              const memberReg = await AxiosMini.memberReg(inputId, inputPw, inputConPw, addr, inputName, inputEmail, inputPhone, inputRrn);
              console.log(addr);
              console.log(memberReg.data.result);
@@ -408,7 +432,7 @@ const SignUp = () => {
         <Container>
             <InerContainer>
             <div className="Logo">
-                <img src={imgLogo} alt="logo" />
+                <Link to="/"><img src={imgLogo} alt="logo" /></Link>
             </div>
             <br />
             <div className="item">
@@ -446,14 +470,23 @@ const SignUp = () => {
                 <label htmlFor="email">이메일</label>
                 <br />
                 <input className="inputEmail" type="email" value ={inputEmail} onChange={onChangeMail}/>
-                <button className="phoneNumBtn" id="phone" onClick={onClickEmailAuth}>인증</button>
+                <button className="phoneNumBtn" id="phone" onClick={onClickEmailAuth}>전송</button>
                 <br />
-                <input className="phoneNumCH" type="text" id="inputNum" placeholder="인증번호 입력"/>
-            </div>
             <div className="hint">
-                    {inputEmail.length > 0 && (
-                    <span className={`message ${isEmail ? 'success' : 'error'}`}>{emailMessage}</span>)}
+                {inputEmail.length > 0 && (
+                <span className={`message ${isEmail ? 'success' : 'error'}`}>{emailMessage}</span>)}
             </div>
+            <div className="item" >
+                <input style={{width:180}} type="text" value={code} onChange={e => setCode(e.target.value)} placeholder="인증번호 입력"/>
+                <button className="phoneNumBtn" onClick={onClickCode}>인증확인</button>
+                <br />
+                <div className="hint">
+                    {inputEmail.length > 0 && (
+                    <span className={`message ${isEmail ? 'success' : 'error'}`}>{verificationResult}</span>)}
+                </div>
+            </div>
+            </div>
+        
             <div className="itemBD">
             <label className="BD">주민등록번호</label>
             <br />
@@ -492,7 +525,6 @@ const SignUp = () => {
                         <PopupPostCode onClose={closePostCode} />
                  )} 
                  </div>
-
             </div>
             <div className="submitBtn">
                {(isId && isPw && isConPw && isName && isEmail && isPhone && isRrn) ? 

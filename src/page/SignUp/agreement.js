@@ -116,7 +116,7 @@ const Agreement = () => { // 필수조건을 체크해야 버튼이 활성화 �
         <Container>
             <Inercontainer>
                 <div className="Logo">
-                    <img src={imgLogo} alt="logo" />
+                <Link to="/"><img src={imgLogo} alt="logo" /></Link>
                 </div>
             
             <div className="radio">
