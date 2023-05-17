@@ -1,5 +1,5 @@
 import axios from "axios";
-const Story_Board = "http://192.168.110.22:8111";
+const Story_Board = "http://localhost:8111";
 
 
 
@@ -48,6 +48,7 @@ const AxiosMini = {
         return await axios.post(Story_Board + "/sec", sec);
     },
 
+    
     // 노래 검색
     songFind : async(title) =>{
         const member ={

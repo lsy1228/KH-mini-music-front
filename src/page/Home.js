@@ -43,6 +43,7 @@ const Side = styled.div`
     height: calc(100vh - 50px);
     display: flex;
     flex-direction:column;
+    justify-content: space-between;
     overflow-y: scroll;
     ::-webkit-scrollbar {
       display: none;
@@ -174,11 +175,11 @@ const PlayBar = styled.div`
 
 // 로그아웃 
 const LogOut=styled.div`
-    font-size: 1.2rem;
+    font-size: 12px;
     margin: 20px auto;
     justify-content: center;
     align-items: center;
-    color: #ccc;
+    color: rgba(255, 255,255, 0.5);
     width: 80px;
     cursor: pointer;
 
