@@ -81,6 +81,7 @@ const Button = styled.button`
 
 
 const SearchPw = () =>{
+     // useState 이용하여 상태를 업데이트한다.
     const [inputID, setInputID] = useState(""); 
     const [inputName, setInputName] = useState("");
     const [inputEmail, setInputEmail] = useState("");
@@ -89,30 +90,34 @@ const SearchPw = () =>{
 
  
  
-    
+    // 모달 창 닫기
     const closeModal = () =>{
         setModalOpen(false);
-      };
+    };
 
+    // inputName 상태 값 변경
     const handleNameChange = (e) => {
         setInputName(e.target.value);
-      };
-    
-      const handleEmailChange = (e) => {
-        setInputEmail(e.target.value);
-      };
+    };
 
-      const handleIdChange = (e) => {
+    // inputEmail 상태 값 변경
+    const handleEmailChange = (e) => {
+        setInputEmail(e.target.value);
+    };
+
+    // inputID 상태 값 변경
+    const handleIdChange = (e) => {
         setInputID(e.target.value);
-      };
+    };
            
 
 
-      const handleSearchId = async() =>{ 
+    const handleSearchId = async() =>{ 
+        // 비동기 요청을 통해 서버로 부터 pw 검색 요청
         const response = await AxiosMini.searchPw(inputName, inputEmail, inputID);
-            setSearchPw(response.data[0].user_PWD);
-            console.log(response.data[0].user_PWD);
-            setModalOpen(true);
+        setSearchPw(response.data[0].user_PWD);
+        console.log(response.data[0].user_PWD);
+        setModalOpen(true);
     };
 
 

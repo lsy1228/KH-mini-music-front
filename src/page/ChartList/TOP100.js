@@ -91,6 +91,9 @@ const Container_in = styled.div`
         font-size: 1.7rem;
         margin-right: 65px;
     }
+    .FULL {
+        color : rgb(255,19,80);
+    }
 `;
 
 

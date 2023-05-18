@@ -102,7 +102,7 @@ const NewAlbum = () =>{
                     <img
                         src={e.cover_url}
                         onClick={() => {
-                            setSelectedAlbum(e);    // 클릭한 앨범 정보를 저장
+                            setSelectedAlbum(e);    // 클릭한 앨범 정보 업데이트 
                             setModalOpen(true);     // modal 호출  
                         }}
                         />

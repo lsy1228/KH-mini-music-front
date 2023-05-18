@@ -81,36 +81,40 @@ const Button = styled.button`
 
 
 
-const SearchId = () =>{
-        
-    const [inputName, setInputName] = useState("");
+const SearchId = () =>{    
+    // useState 이용하여 상태를 업데이트한다.
+    const [inputName, setInputName] = useState(""); 
     const [inputEmail, setInputEmail] = useState("");
     const [modalOpen,setModalOpen] = useState(false);
     const [searchId, setSearchID] = useState("");
 
  
  
-    
+    // 모달 창 닫기 
     const closeModal = () =>{
         setModalOpen(false);
-      };
+    };
 
+    
+    // inputName 업데이트
     const handleNameChange = (e) => {
         setInputName(e.target.value);
-      };
+    };
     
-      const handleEmailChange = (e) => {
+    // inputEamil 업데이트
+    const handleEmailChange = (e) => {
         setInputEmail(e.target.value);
-      };
+    };
 
                              
 
 
-      const handleSearchId = async() =>{ 
-        const response = await AxiosMini.searchId(inputName, inputEmail);
-            setSearchID(response.data[0].user_ID);
-            console.log(response.data[0].user_ID);
-            setModalOpen(true);
+    const handleSearchId = async() =>{ 
+        // 비동기 요청을 통해 서버로 부터 ID 검색 요청 
+        const response = await AxiosMini.searchId(inputName, inputEmail);   
+        setSearchID(response.data[0].user_ID);  // 데이터에 저장된 ID를 가져와 searchId에 저장
+        console.log(response.data[0].user_ID);
+        setModalOpen(true);     // 모달 오픈 
     };
 
 
@@ -133,7 +137,7 @@ const SearchId = () =>{
             </Container_body> 
         </Body>  
     );
-}
+};
 
 
 export default SearchId;
