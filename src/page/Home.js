@@ -177,6 +177,7 @@ const PlayBar = styled.div`
 const LogOut=styled.div`
     font-size: 12px;
     margin: 20px auto;
+    display: flex;
     justify-content: center;
     align-items: center;
     color: rgba(255, 255,255, 0.5);
@@ -308,7 +309,7 @@ const Home =() => {
                   <Lib>멤버쉽안내</Lib>
                   <Lib>고객센터</Lib>
               </Ulb>
-              <div>
+                <div>
                     {isLogin==="FALSE"}
                     {isLogin==="TRUE" && <LogOut onClick={onLogOut}>로그아웃</LogOut>}
                 </div>
