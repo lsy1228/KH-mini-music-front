@@ -1,5 +1,5 @@
 import axios from "axios";
-const Story_Board = "http://localhost:8111";
+const Story_Board = "http://192.168.10.228:8111";
 
 
 
