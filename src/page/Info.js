@@ -12,6 +12,8 @@ const Body = styled.div`
     justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
+
+    
     background-color: black;
     position: fixed;
 `;
