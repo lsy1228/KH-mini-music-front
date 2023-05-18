@@ -8,7 +8,7 @@ const Body = styled.div`
     margin: 0;
     padding: 0;
     width: 100%;
-    height: calc(100vh - 230px);
+    height: calc(100vh - 240px);
     display: flex;
     justify-content: flex-start;
     align-items: center;

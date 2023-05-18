@@ -13,7 +13,8 @@ import SignUp from './page/SignUp/signUp';
 import Welcome from './page/SignUp/welcome';
 import MusicInfo from './page/MusicInfo';
 import MemberShip from './page/MemberShip';
-
+import SearchId from './page/searchId';
+import SearchPw from './page/searchPw';
 
 
 
@@ -36,6 +37,8 @@ function App() {
           <Route path='/Welcome' element={<Welcome/>}/>
           <Route path='/MusicInfo' element={<MusicInfo/>}/>
           <Route path='/MemberShip' element={<MemberShip/>}/>
+          <Route path='/SearchId' element={<SearchId/>}/>
+          <Route path='/SearchPw' element={<SearchPw/>}/>
         </Routes>
      </Router>
     </UserStore>

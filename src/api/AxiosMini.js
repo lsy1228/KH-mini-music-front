@@ -19,6 +19,28 @@ const AxiosMini = {
         return await axios.get(Story_Board + `/member?name=${id}`);
     },
 
+    // 아이디 찾기 
+    searchId: async (name, email) => {
+            const searchId = {
+                name : name,
+                email : email
+            };
+        return await axios.post(Story_Board+ "/searchId", searchId);
+      },
+
+
+    // 비밀번호 찾기 
+    searchPw: async (name, email, id) => {
+            const searchPw = {
+                name : name,
+                email : email,
+                id : id
+
+            };
+        return await axios.post(Story_Board+ "/searchPw", searchPw);
+     },
+
+
     // 회원 가입 여부 확인
     memberRegCheck : async(id) => {
         return await axios.get(Story_Board + `/check?id=${id}`);
@@ -48,7 +70,7 @@ const AxiosMini = {
         return await axios.post(Story_Board + "/sec", sec);
     },
 
-    
+
     // 노래 검색
     songFind : async(title) =>{
         const member ={
