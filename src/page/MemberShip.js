@@ -8,19 +8,22 @@ import { UserContext } from "../context/UserInfo";
 
 const Container=styled.div`
   width: calc(100vw - 300px);
+  min-width: 600px;
   height: 100vh;
   background: linear-gradient(150deg,#BB2649, rgb(0,0,0) 1200px);
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
 
     .wholeBody{  
-        height: 800px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
+          width: 700px;
+          height: 800px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
       span{
           color: white;
           margin: 0 5px 0 5px;
@@ -29,10 +32,10 @@ const Container=styled.div`
         }
       .partition1{
           display: flex;
-          justify-content: center;
-          align-items: center;
+          flex-direction: column;
+          justify-content: flex-start;
           border-radius: 20px;
-          width: 700px;
+          width: 100%;
           height: 80px;        
         }
 
@@ -44,16 +47,13 @@ const Container=styled.div`
           justify-content: space-evenly;
           align-items: center;    
           border-radius: 20px;
-          width: 700px;
+          width: 100%;
           height: 140px;    
         }    
     }
 `;
 
 const MemberShip =()=>{
-    //스토리지에 저장된 유저 아이디를 가져온다.
-    const isUserIdSrt = window.localStorage.getItem("userIdSuv");
-
     //컨텍스트에 카카오결제 페이지를 저장한다.
     const context = useContext(UserContext);
     const {setPayUrl,payUrl} = context; 
@@ -132,7 +132,8 @@ const MemberShip =()=>{
         <Container>
             <div className="wholeBody">
                 <div className="partition1">
-                    현재 <span>{isUserIdSrt}</span>님이 이용하시고 계신 맴버십 등급은 입니다. 
+                    <span>AEL이 준비한 특별한 선물</span>
+                    3개월 결제시 20% 특가 할인 EVNET
                  </div>
                  <div className="partition2" onMouseOver={handlePayment1m}>
                       1개월 무제한 전곡 듣기
@@ -141,7 +142,7 @@ const MemberShip =()=>{
                   </div>  
                   <div className="partition2" onMouseOver={handlePayment3m}>
                       3개월 무제한 전곡 듣기
-                      <span>월 12,800원  </span>                      
+                      <span>월 13,200원  </span>                      
                       <a href={payUrl} target="_blank"><img src={PayLogo}/></a>
                   </div>                   
             </div>
