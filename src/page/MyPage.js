@@ -160,11 +160,11 @@ const MyPage =(props)=>{
     //유저아이디를 window 스토리지에 넣어 다른 페이지에도 보여질 수 있도록 한다.
     const isUserIdSrt = window.localStorage.getItem("userIdSuv");
        
-    //메뉴값을 받아 innerContain 에 넣어서 출력하게 해준다.
-    const[sidemenu, setSidemenu] = useState("all"); 
-    const onSelect = q =>{
-        setSidemenu(q); 
-    };       
+    //이벤트 2개가 들어가는지 확인 실제로 쓰이지는 않음.
+    // const[sidemenu, setSidemenu] = useState("all"); 
+    // const onSelect = q =>{
+    //     setSidemenu(q); 
+    // };       
 
     //프롭스로 값을 받아온다.
     const {changePage}=props;
@@ -179,9 +179,9 @@ const MyPage =(props)=>{
                 <div className="body">
                     <div className="partition">
                     {MyPageMenu1.map(pm=>(
-                        <InnerContain key={pm.name} active={sidemenu === pm.name} 
+                        <InnerContain key={pm.name} 
                             onClick={()=>{
-                                onSelect(pm.name);
+                                // onSelect(pm.name);
                                 changePage(pm.name);
                             }}>
                             <h2>{pm.name}</h2> <br/> <span>{pm.info}</span>
@@ -191,9 +191,8 @@ const MyPage =(props)=>{
                     </div>
                     <div className="partition">
                     {MyPageMenu2.map(pm=>(
-                        <InnerContain key={pm.name} active={sidemenu === pm.name} 
+                        <InnerContain key={pm.name} 
                             onClick={()=>{
-                                onSelect(pm.name);
                                 changePage(pm.name);
                             }}>
                             <h2>{pm.name}</h2> <br/> <span>{pm.info}</span>

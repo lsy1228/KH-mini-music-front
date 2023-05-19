@@ -216,15 +216,15 @@ const Home =() => {
     //버튼의 선택을 통해서 버튼의 값을 가져온다.
     const[changeSide, setChangeSide] = useState("");
     const[sidemenu, setSidemenu] = useState("all"); 
-    const[myInfo, setMyinfo] = useState("all"); 
     
   
 
     //onClick을 통해서 가져온 값을 해당하는 구역에 기입 한다. 
     const onSelect = q =>{
+      //side메뉴를 순회할 useState
       setChangeSide(q);
+      //css를 재정의 할 useState
       setSidemenu(q); 
-      setMyinfo(q); 
     };
      
     
@@ -291,7 +291,7 @@ const Home =() => {
               {isLogin==="FALSE" && <Link to="/Loginpage" className="LoginBtn"><AiOutlineUser/>로그인</Link>}
                 {MyInfo.map(l=>(
                     isLogin ==="TRUE" && 
-                    <Button to="/Mypage" className="LoginBtn"  key={l.name} active={myInfo === l.name} onClick={()=>setChangeSide(l.name)} > 
+                    <Button to="/Mypage" className="LoginBtn"  key={l.name}  onClick={()=>setChangeSide(l.name)} > 
                        {l.name}
                     </Button>
                     ))}
@@ -301,6 +301,7 @@ const Home =() => {
                 </SearchBox>
               </Logindiv>
                 {Sidemenu.map( s=>(  // Sidemenu 요소를 순회하면서,  onClick 클릭 시 onSelect 함수를 호출하여 화면 상태 변경 
+                                     // active={sidemenu === s.name} 에서 선택되어진 s.name 값은 CSS에서 props로 재정이 되어진다.
                   <Button key={s.name} active={sidemenu === s.name} onClick={()=>onSelect(s.name)}>
                       {s.name}
                   </Button>
