@@ -110,21 +110,24 @@ const TOP100=()=>{
         };
         chartSong();
 
-    }, []);
+    }, [clicked]);
     
-    const clickHeart = async(songId) =>{
-        if(clicked.includes(songId)) { // clicked 배열에 현재 index가 포함되어 있는지 확인, 포함되어 있으면 클릭된 상태
-            setClicked(clicked.filter((item)=> item !==songId)); // 클릭이 된 경우, 클릭 취소
-            const songdelte = await AxiosMini.songLikeDelete(id, songId);
-        } else {    // 클릭되지 않은 경우
+    const clickHeart = async(userId, songId) =>{
             if(value === "FALSE") {
                 navigate("/LoginPage");
             } else {
-            setClicked([...clicked, songId]); // cliked 배열에 추가
+            setClicked([...clicked, userId,songId]); // cliked 배열에 추가
             const songLike = await AxiosMini.songLike(id, songId);      // like 테이블에 insert
+            console.log(songLike);
         }
         }
+
+    const clickHeartFull = async(userId, songId) => {
+        const songdelete = await AxiosMini.songLikeDelete(id, songId);
+        console.log(songdelete);
+        setClicked([...clicked, userId, songId]);
     }
+
 
 
     const playPause = (index) => {
@@ -193,8 +196,8 @@ const TOP100=()=>{
             <div className="ranking">{index+1}</div>    
             <img src={x.cover_url}/>
             <div className="TITLE">{x.title}</div>      
-            <div className="artist">{x.artist }</div>
-            {clicked.includes(index) ?<BsHeartFill className="heart FULL" onClick={()=>clickHeart(index, x.songId)}/> : <BsHeart className="heart" onClick={()=>clickHeart(index, x.songId)}/>}
+            <div className="artist">{x.artist}</div>
+            {x.user_id !== null ?<BsHeartFill className="heart FULL" onClick={()=>clickHeartFull(x.user_id, x.songId)}/> : <BsHeart className="heart" onClick={()=>clickHeart(x.user_id, x.songId)}/>}
             {playing && playingIndex === index ? <FaPause className="play" onClick={()=>playPause(index)}/> : <FaPlay className="play" onClick={()=>playPause(index)}/>}
             <audio ref={Audio} onTimeUpdate={onPlaying} onEnded={handleAudio}/>         
         </Container_in>
