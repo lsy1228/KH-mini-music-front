@@ -164,13 +164,14 @@ const Mainbody = styled.div`
 const PlayBar = styled.div`
     width: 100%;
     height: 100%;
+
     .album{
       width: 50px;
     }
     .list{
       margin-top: 5px;
       color: white;
-  }
+    }
 `;
 
 // 로그아웃 
@@ -185,8 +186,8 @@ const LogOut=styled.div`
     cursor: pointer;
 
     &:hover{
-      color: red;
-    }
+        color: red;
+      }
 `;
 
 
@@ -209,7 +210,7 @@ const MyInfo = [
 const Home =() => { 
     //Context에서 값 읽기 
     const context = useContext(UserContext);
-    const {isLogin, setIsLogin, setSongTitle, setSongArtist, setAlbumName, setLyrics, setCoverUrl, songUrl, setPlaying, setSongUrl} = context;
+    const {isLogin, setIsLogin, setSongTitle, setSongArtist, setAlbumName, setLyrics, setCoverUrl, setPlaying, setSongUrl} = context;
    
   
  
@@ -235,7 +236,7 @@ const Home =() => {
       if(isLoginStr==="TRUE"){
         setIsLogin("TRUE");
       }else{
-      setIsLogin("FALSE");
+        setIsLogin("FALSE");
       };
   
     //노래를 검색해서 콘솔로 url 출력
@@ -253,7 +254,7 @@ const Home =() => {
 
     //비동기 통신으로 받아온 노래 이름과 아티스트 이름으로 URL을 검색한다.
     const onFindSong=async()=>{
-      const songFind = await AxiosApi.songFind(inputSongName);
+      const songFind = await AxiosApi.songFind(inputSongName); 
       setCoverUrl(songFind.data[0].cover_url);
       setAlbumName(songFind.data[0].albumName);
       setSongArtist(songFind.data[0].artist);
@@ -328,7 +329,7 @@ const Home =() => {
           </Mainbody>
         </Container>    
               <PlayBar>
-                 <Player  />
+                 <Player/>
               </PlayBar>
       </ContainerWhole>
     );

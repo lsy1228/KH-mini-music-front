@@ -10,7 +10,6 @@ const Container=styled.div`
     display: flex;
     background-color: rgba(0,0,0,0.7);
     color: white;
-
     //화면창이 1000px이하 일 때 플렉스 정렬 컬럼으로 바뀐다.
     @media only screen and (max-width: 1000px){
         flex-direction: column;
@@ -96,6 +95,9 @@ const Container=styled.div`
         }
     }
 `;
+
+
+
 const MusicInfo=()=>{
     const context = useContext(UserContext);
     const {songTitle,songArtist,albumName,lyrics, coverUrl, setPlaying ,playing, songUrl, setPlayImg, setArtist, setTitle, Audio, setCurrentSong, currentSong} = context;
@@ -122,6 +124,10 @@ const MusicInfo=()=>{
         setCurrentSong({...currentSong, "progress" : ct / duration * 100, "length":duration});
     };
 
+    const handleAudio = () => {
+        setPlaying(false);
+    }
+
     return(
         <Container>
                 <div className="partition">
@@ -131,7 +137,7 @@ const MusicInfo=()=>{
                     <div className="songInfo">
                         <div className="likeCount">
                         {playing ? <BsFillPauseFill className="btn_action_pp" onClick={()=>onClick()} /> : <BsFillPlayFill className="btn_action_pp" onClick={()=>onClick()} />}
-                        <audio src={songUrl} ref={Audio} onTimeUpdate={onPlaying}></audio>
+                        <audio src={songUrl} ref={Audio} onTimeUpdate={onPlaying} onEnded={handleAudio}></audio>
                         </div>
                         <div className="infoArea">
                                <div className="titleSong">

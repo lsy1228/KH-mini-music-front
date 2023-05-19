@@ -23,7 +23,7 @@ const Inercontainer = styled.div`
     flex-direction: column;
     font-size: 12px;
 
-img {
+    img {
         width: 200px;
         margin: 100px 100px;
         display: flex;
@@ -31,6 +31,7 @@ img {
         justify-content: center;
         align-items: center;
     }
+
     p {
         margin:10px 0 5px 45px;
         display: flex;        
@@ -47,22 +48,26 @@ img {
             display: none;
         }
     }
+
     span {
         font-weight: bolder;
         color: white;
     }
+    
     .radio {
         width: 600px;
         margin: auto;
         justify-content: center;
         align-items: center;
     }
+    
     .btn {
         display: flex;
         margin: 10px;
         justify-content: center;
         align-items: center;
     }
+
     .cancleBtn {
         width: 180px;
         height: 45px;
@@ -73,6 +78,7 @@ img {
         font-weight: 500;
         border-radius: 10px;
     }
+
     .comfirmBtn {
         width: 180px;
         height: 45px;
@@ -87,7 +93,6 @@ img {
             color: black;
         }
     }
-
 `;
 
 
@@ -103,6 +108,7 @@ const Agreement = () => { // 필수조건을 체크해야 버튼이 활성화 �
             setOneCheck(false);
         }
     }
+
     const twoRadio = () => { // 두번째 필수 체크 항목
         if (twoCheck === false) {
             setTwoCheck(true);
@@ -116,9 +122,8 @@ const Agreement = () => { // 필수조건을 체크해야 버튼이 활성화 �
         <Container>
             <Inercontainer>
                 <div className="Logo">
-                <Link to="/"><img src={imgLogo} alt="logo" /></Link>
+                    <Link to="/"><img src={imgLogo} alt="logo" /></Link>
                 </div>
-            
             <div className="radio">
                 <label htmlFor=""></label>
                 <input checked={oneCheck} type="checkbox" name="1" onClick={oneRadio}/><span>aEl MUSIC 이용약관 동의(필수)</span>
@@ -150,7 +155,6 @@ const Agreement = () => { // 필수조건을 체크해야 버튼이 활성화 �
                 <Link to="/home">
                     <input type="button" className="cancleBtn" value={'취소'}/>
                 </Link>
-
                 {/* 조건이 만족하면 버튼이 활성화 되어 다음 페이지로 넘어감 */}
                 <Link to="/SignUp">
                     <input disabled={!oneCheck || !twoCheck} type="button" className="comfirmBtn" value={'확인'}/>

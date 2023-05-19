@@ -40,7 +40,6 @@ const Container = styled.div`
         color: white;
         font-size: 12px;
         text-decoration: none;
-        
     }
 `; 
 
@@ -54,7 +53,11 @@ const Input = styled.input`
     border-radius:10px;
     font-size: 15px;
     border: 0px;
-    &:focus {outline: 0.5px solid white;}
+
+    &:focus {
+        outline: 0.5px solid white;
+    };
+
     &::placeholder {
         padding: 5px;
         color: rgba(255,255,255,0.7);
@@ -71,11 +74,12 @@ const Button = styled.button`
     color: #BB2649;
     font-size:15px;
     background-color:rgb(255,255,255) ;
+
     &:hover{
         border: 2px solid #BB2649;
         background-color: #BB2649;
         color: rgb(255,255,255);
-    }
+    };
 `;
 
 
@@ -111,9 +115,10 @@ const SearchPw = () =>{
     };
            
 
-
+    // Axios를 이용하여 서버로 inputEmail 변수에 담긴 이메일 주소를 전송하고, 
+				//서버에서 생성한 랜덤한 인증 코드를 받아오는 API를 호출
     const handleSearchId = async() =>{ 
-        // 비동기 요청을 통해 서버로 부터 pw 검색 요청
+        // 비동기 요청을 통해 서버로 입력된 inputName, inputEmail, inputID 통해 user_pw 받아온다
         const response = await AxiosMini.searchPw(inputName, inputEmail, inputID);
         setSearchPw(response.data[0].user_PWD);
         console.log(response.data[0].user_PWD);

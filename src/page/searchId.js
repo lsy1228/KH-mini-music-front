@@ -128,7 +128,7 @@ const SearchId = () =>{
                 <Input placeholder="Email" type="email"  value={inputEmail} onChange={handleEmailChange}   />
                 <Container></Container>
                 <Button onClick={handleSearchId}>아이디찾기</Button>
-                <Modal open={modalOpen} type={true}  close={closeModal} header="아이디찾기">{inputName} 님 아이디는{searchId} </Modal>
+                <Modal open={modalOpen} type={true}  close={closeModal} header="아이디찾기">{inputName}님의 아이디는{searchId} 입니다.</Modal>
                 <Container></Container>
                 <Container>
                 <a href="LoginPage" className="findIdPW">Login으로 이동</a>

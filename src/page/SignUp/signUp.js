@@ -209,7 +209,7 @@ const InerContainer = styled.div`
   .inputEmail {
     width: 200px;
     margin-bottom: 10px;
-  }
+    }
 `;
 
 const SignUp = () => {
@@ -288,6 +288,7 @@ const SignUp = () => {
             setIsId(true);
         }
     }
+    
     //비밀번호 정규식
     const onChangePw = (e) => {
         const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,25}$/ // 비밀번호 정규식
