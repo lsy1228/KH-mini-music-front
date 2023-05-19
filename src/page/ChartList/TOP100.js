@@ -54,21 +54,20 @@ const Container_in = styled.div`
         display: block;
     }
     .TITLE{
+        min-width: 200px;
         width: 500px;
         font-size: 30px;
         font-weight:bolder;
     }
 
     .artist{
+        min-width: 150px;
         width: 200px;
         font-weight: bolder;
     }
 
-    .minute{
-        width: 100px;
-    }
-
     .play{
+        min-width: 25px;
         color: white;
         font-size: 25px;
         background-color : rgba(0,0,0,0);
@@ -80,12 +79,8 @@ const Container_in = styled.div`
         font-size: 30px;
     }
 
-    .more{
-        width: 100px;
-        text-align: center;
-        font-size: 40px;
-    }
     .heart {
+        min-width: 25px;
         color: white;
         font-size: 1.7rem;
         margin-right: 65px;
@@ -136,8 +131,7 @@ const TOP100=()=>{
         if(playing && playingIndex === index) { // 현재 재생중이고 인덱스가 같으면
             setPlaying(false);
             Audio.current.pause();  // 곡을 멈춤
-          
-        } else {
+        } else {        // 재생중이 아니면
             setPlaying(true);
             setPlayingIndex(index);     // 재생 중인 곡의 인덱스를 변경
             if(playingIndex === index) {

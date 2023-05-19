@@ -234,8 +234,7 @@ const Chart=()=>{
         setAllPlay(!allPlay);
         if(allPlay === true) {      // 모두 재생이 true이면
             setPlaying(false);      // 재생상태 false
-            Audio.current.pause();  // 노래 멈춤
-            setPlayingIndex(-1);    
+            Audio.current.pause();  // 노래 멈춤    
             setTitle("");
             setArtist("");
             setPlayImg(""); }
@@ -256,8 +255,7 @@ const Chart=()=>{
         setRandomPlay(!randomPlay);     
         if(randomPlay === true) {   // 랜덤 재생 true이면
             setPlaying(false);      // 재생상태 false로 변경
-            Audio.current.pause();  // 노래 멈춤
-            setPlayingIndex(-1);    
+            Audio.current.pause();  // 노래 멈춤  
             setTitle("");
             setArtist("");
             setPlayImg("");

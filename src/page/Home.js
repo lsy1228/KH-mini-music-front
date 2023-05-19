@@ -210,7 +210,7 @@ const MyInfo = [
 const Home =() => { 
     //Context에서 값 읽기 
     const context = useContext(UserContext);
-    const {isLogin, setIsLogin, setSongTitle, setSongArtist, setAlbumName, setLyrics, setCoverUrl, setPlaying, setSongUrl} = context;
+    const {isLogin, setIsLogin, setSongTitle, setSongArtist, setAlbumName, setLyrics, setCoverUrl, setPlaying, setSongUrl, setPlayingIndex} = context;
    
   
  
@@ -249,6 +249,7 @@ const Home =() => {
         onFindSong();
         setChangeSide("Enter");
         setPlaying(false); 
+        setPlayingIndex(0);
       }; 
     }; 
 
