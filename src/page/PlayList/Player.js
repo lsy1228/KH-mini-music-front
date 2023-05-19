@@ -14,6 +14,7 @@ const PlayerContainer = styled.div`
     .playTitle {
         display: flex;
         justify-content: center;
+        align-items: center;
         color: white;
         width: 400px;
         font-weight: bolder;
@@ -21,6 +22,7 @@ const PlayerContainer = styled.div`
     }
 
     img {
+        border-radius: 3px;
         width: 33px;
         height: 33px;
     }
@@ -31,7 +33,7 @@ const PlayerContainer = styled.div`
 
         .navigation_wrapper {
             min-width: 100%;
-            height: 3px;
+            height: 5px;
             cursor: pointer;
 
             .seek_bar {
@@ -43,28 +45,35 @@ const PlayerContainer = styled.div`
     }
 
     .controls {
+        margin-top: 4px;
         width: 100%;
         font-size: inherit;
         display: flex;
         align-items: center;
         justify-content: space-evenly;
+      
 
         .btn {
+            min-width: 200px;
             align-items: center;
             justify-content: center;
             display: flex;
             flex-grow:1;
+            /* border:  1px solid white; */
+        
         }
 
         .btn_action {
-            font-size: 1.4rem;
+            min-width: 25px;
+            font-size: 25px;
             color: white;
             cursor: pointer;
             padding-bottom: 5px;
         }
 
         .btn_action_pp {
-            font-size: 1.4rem;
+            min-width: 25px;
+            font-size: 25px;
             color: rgb(255, 19, 80);
             cursor: pointer;
             padding: 0 8% 5px 8%;
