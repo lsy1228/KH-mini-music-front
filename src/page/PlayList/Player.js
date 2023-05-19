@@ -13,6 +13,7 @@ const PlayerContainer = styled.div`
 
     .playTitle {
         display: flex;
+        align-items: center;
         justify-content: center;
         color: white;
         width: 400px;
@@ -21,6 +22,7 @@ const PlayerContainer = styled.div`
     }
 
     img {
+        border-radius: 3px;
         width: 33px;
         height: 33px;
     }
@@ -31,7 +33,7 @@ const PlayerContainer = styled.div`
 
         .navigation_wrapper {
             min-width: 100%;
-            height: 3px;
+            height: 5px;
             cursor: pointer;
 
             .seek_bar {
@@ -43,6 +45,7 @@ const PlayerContainer = styled.div`
     }
 
     .controls {
+        margin-top: 4px;
         width: 100%;
         font-size: inherit;
         display: flex;
@@ -50,6 +53,7 @@ const PlayerContainer = styled.div`
         justify-content: space-evenly;
 
         .btn {
+            min-width: 200px;
             align-items: center;
             justify-content: center;
             display: flex;
@@ -57,14 +61,16 @@ const PlayerContainer = styled.div`
         }
 
         .btn_action {
-            font-size: 1.4rem;
+            min-width: 25px;
+            font-size: 25px;
             color: white;
             cursor: pointer;
             padding-bottom: 5px;
         }
 
         .btn_action_pp {
-            font-size: 1.4rem;
+            min-width: 25px;
+            font-size: 25px;
             color: rgb(255, 19, 80);
             cursor: pointer;
             padding: 0 8% 5px 8%;
@@ -163,8 +169,8 @@ const Player = () => {
         let width = clickRef.current.clientWidth;       // 참조하는 요소의 너비
         const offset = e.nativeEvent.offsetX;           // 클릭 이벤트가 발생한 위치의 x좌표를 가져옴
 
-        const divprogress = offset / width * 100;       // 클릭한 x좌표를 너비로 나누고 백분율 형태로 계산
-        Audio.current.currentTime = divprogress / 100 * currentSong.length; // 오디오 요소 currentTime을 업데이트
+        const divprogress = offset / width * 100;       // 클릭한 x좌표를 너비로 나누고 백분율 형태로 계산, 클릭된 위치가 전체 너비에 대해 얼마나 되는지 나타냄
+        Audio.current.currentTime = divprogress / 100 * currentSong.length; // 클릭된 위치를 전체 너비로 환산한 백분율에 현재 재생 중인 곡의 길이를 곱한 값, 오디오 요소 currentTime을 업데이트
     }
 
     return (
