@@ -182,8 +182,6 @@ const categories=[
     }
 ]
 
-
-
 const Chart=()=>{
    
     //ConText API를 통해서 저장된 id를 가져온다.

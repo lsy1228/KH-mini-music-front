@@ -73,7 +73,6 @@ const PlayerContainer = styled.div`
 `;
 
 
-
 const Player = () => {
 
     const context = useContext(UserContext);

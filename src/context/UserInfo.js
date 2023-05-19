@@ -1,7 +1,6 @@
 import { createContext, useRef, useState } from "react"; 
 export const UserContext = createContext(null); 
 
-
 const UserStore = (props) => {
     const [userId, setUserId] = useState(""); 
     const [password, setPassword] = useState(""); 

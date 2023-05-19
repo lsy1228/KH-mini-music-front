@@ -23,7 +23,6 @@ const Body = styled.div`
     }
 `;
 
-
 const Container_in = styled.div`
         margin: 8px 18px 8px 8px;
         width: 100%;
