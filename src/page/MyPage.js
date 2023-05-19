@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 const Container=styled.div`
     width: calc(100vw - 300px);
+    height: calc(100vh - 50px);
     background-color: #BB2649;
     position: fixed;
     background: linear-gradient(150deg,#BB2649, rgb(0,0,0) 870px);
@@ -13,7 +14,7 @@ const Container=styled.div`
 
 const Head=styled.div`
     width: 100%;
-    height: 140px;
+    height: 120px;
     display: flex;
     justify-content: end;
     color: white;
