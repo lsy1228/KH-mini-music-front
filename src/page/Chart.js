@@ -124,20 +124,27 @@ const Allplay = styled.div`
         width: 180px;
     }
 
-    button{
-        width: 120px;
-        height: 40px;
-        margin: 0 10px 0 0 ;
-        background-color: #BB2649;
-        color: white;
-        font-weight: bolder;
-        border: none;
-        border-radius: 5px;
-        &:hover{
-            background-color: white;
-            color: #BB2649;
-        }
-    }
+    .allplay{
+    width: 120px;
+    height: 40px;
+    margin: 0 10px 0 0 ;
+    background-color: #BB2649;
+    color: black;
+    font-weight: bolder;
+    border: none;
+    border-radius: 5px;
+}
+    .rndplay {
+    width: 120px;
+    height: 40px;
+    margin: 0 10px 0 0 ;
+    background-color: #BB2649;
+    color: black;
+    font-weight: bolder;
+    border: none;
+    border-radius: 5px;
+
+}
 `;
 
 
@@ -181,7 +188,7 @@ const Chart=()=>{
    
     //ConText API를 통해서 저장된 id를 가져온다.
     const context = useContext(UserContext);
-    const {isLogin, setIsLogin} = context;
+    const {isLogin, setIsLogin, setPlaying, chart ,playingIndex, setPlayingIndex, Audio, setTitle, setArtist, setPlayImg, setAllPlay, allPlay ,setRandomPlay, randomPlay} = context;
 
 
     //날짜를 설정하여 업데이트를 현시간으로 설정하게 한다.
@@ -225,6 +232,49 @@ const Chart=()=>{
             window.location.replace("/");
         };
 
+    const allplay = () => {     // 모두 재생
+        setAllPlay(!allPlay);
+        if(allPlay === true) {      // 모두 재생이 true이면
+            setPlaying(false);      // 재생상태 false
+            Audio.current.pause();  // 노래 멈춤
+            setPlayingIndex(-1);    
+            setTitle("");
+            setArtist("");
+            setPlayImg(""); }
+        else {
+            const nextIndex = playingIndex + 1;     // playingIndex를 다음 노래 인덱스로 설정
+            setPlaying(true);                       // 재생상태 true
+            setPlayingIndex(nextIndex);             
+            Audio.current.src = chart[nextIndex].song_url;
+            Audio.current.play();
+            setTitle(chart[nextIndex].title);
+            setArtist(chart[nextIndex].artist);
+            setPlayImg(chart[nextIndex].cover_url);
+        }
+    }
+
+    const randomplay = () => {      // 랜덤 재생
+        setAllPlay(false);
+        setRandomPlay(!randomPlay);     
+        if(randomPlay === true) {   // 랜덤 재생 true이면
+            setPlaying(false);      // 재생상태 false로 변경
+            Audio.current.pause();  // 노래 멈춤
+            setPlayingIndex(-1);    
+            setTitle("");
+            setArtist("");
+            setPlayImg("");
+        } else {
+        const randomInt = Math.floor(Math.random() * 10);   // 0 ~ 9까지의 랜덤 난수 생성
+        setPlayingIndex(randomInt);                         // playingIndex를 랜덤 난수로 설정
+        setPlaying(true);                                   
+        Audio.current.src = chart[randomInt].song_url;
+        Audio.current.play();
+        setTitle(chart[randomInt].title);
+        setArtist(chart[randomInt].artist);
+        setPlayImg(chart[randomInt].cover_url);
+        }
+    }
+
 
     return(
         <Body>
@@ -247,8 +297,8 @@ const Chart=()=>{
                 {nowDate.map(d=>
                     // 실시간으로 시간을 업데이트 한다.
                     (<div>ⓘ {d.month}월 {d.day}일 {d.hour}시 {d.min}분 업데이트</div>))}
-                <button className="allplay">ALL PLAY</button>
-                <button className="rndplay">RANDOM PLAY</button>
+                <button className="allplay" style={{backgroundColor : allPlay ? 'white' : '#BB2649' }} onClick={allplay}>ALL PLAY</button>
+                <button className="rndplay" style={{backgroundColor : randomPlay ? 'white' : '#BB2649' }} onClick={randomplay}>RANDOM PLAY</button>
             </Allplay>
             
             <CHART>

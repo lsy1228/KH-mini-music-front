@@ -125,6 +125,10 @@ const MusicInfo=()=>{
         setCurrentSong({...currentSong, "progress" : ct / duration * 100, "length":duration});
     };
 
+    const handleAudio = () => {
+        setPlaying(false);
+    }
+
     return(
         <Container>
                 <div className="partition">
@@ -134,7 +138,7 @@ const MusicInfo=()=>{
                     <div className="songInfo">
                         <div className="likeCount">
                         {playing ? <BsFillPauseFill className="btn_action_pp" onClick={()=>onClick()} /> : <BsFillPlayFill className="btn_action_pp" onClick={()=>onClick()} />}
-                        <audio src={songUrl} ref={Audio} onTimeUpdate={onPlaying}></audio>
+                        <audio src={songUrl} ref={Audio} onTimeUpdate={onPlaying} onEnded={handleAudio}></audio>
                         </div>
                         <div className="infoArea">
                                <div className="titleSong">

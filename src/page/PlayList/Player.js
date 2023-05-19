@@ -77,12 +77,20 @@ const PlayerContainer = styled.div`
 const Player = () => {
 
     const context = useContext(UserContext);
-    const {playing, setPlaying, setPlayingIndex,chart, playingIndex, currentSong, Audio, title, setTitle, artist, setArtist, playImg, setPlayImg} = context;
+    const {playing, setPlaying, setPlayingIndex,chart, playingIndex, currentSong, Audio, title, setTitle, artist, setArtist, playImg, setPlayImg, randomPlay} = context;
     const clickRef = useRef();
     
 
     const onClick = () => {
-      
+        if(playingIndex === -1) { // 차트가 처음으로 렌더링 되면
+            setPlayingIndex(0);     // 가장 첫번째 곡으로 인덱스 설정
+            setPlaying(true);
+            Audio.current.src = chart[0].song_url;
+            setTitle(chart[0].title);
+            setArtist(chart[0].artist);
+            setPlayImg(chart[0].cover_url);
+            Audio.current.play();
+        }
         setPlaying(!playing);   // 재생상태 설정
         if(playing === true) {  // 재생중이면
             Audio.current.pause();      // 노래 멈춤
@@ -109,6 +117,17 @@ const Player = () => {
             setPlayImg(chart[index-1].cover_url);
         }
         Audio.current.play();
+
+        if(randomPlay === true) {                               // 랜덤 재생이 true이면
+            const randomInt = Math.floor(Math.random() * 10);   // 0 ~ 9까지의 랜덤 난수 생성
+            setPlayingIndex(randomInt);                         // playingIndex를 랜덤 난수로 설정
+            setPlaying(true);
+            Audio.current.src = chart[randomInt].song_url;
+            Audio.current.play();
+            setTitle(chart[randomInt].title);
+            setArtist(chart[randomInt].artist);
+            setPlayImg(chart[randomInt].cover_url);
+        }
     }
     const skipNext = () => {
         const index = playingIndex;         // 인덱스를 현재 재생중인 노래의 인덱스로 설정
@@ -128,6 +147,17 @@ const Player = () => {
             setPlayImg(chart[index+1].cover_url);
         }
         Audio.current.play();
+
+        if(randomPlay === true) {                               // 랜덤 재생이 true이면
+            const randomInt = Math.floor(Math.random() * 10);   // 0 ~ 9까지의 랜덤 난수 생성
+            setPlayingIndex(randomInt);                         // playingIndex를 랜덤 난수로 설정
+            setPlaying(true);
+            Audio.current.src = chart[randomInt].song_url;
+            Audio.current.play();
+            setTitle(chart[randomInt].title);
+            setArtist(chart[randomInt].artist);
+            setPlayImg(chart[randomInt].cover_url);
+        }
     }
 
     const checkWidth = (e) => {

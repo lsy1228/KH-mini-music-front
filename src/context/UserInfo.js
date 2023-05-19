@@ -26,6 +26,9 @@ const UserStore = (props) => {
     const [artist, setArtist] = useState("");
     const [playImg, setPlayImg] = useState("");
     const Audio = useRef(null);
+
+    const [allPlay, setAllPlay] = useState(false);
+    const [randomPlay, setRandomPlay] = useState(false);
     
     return (
         <UserContext.Provider value={{
@@ -49,7 +52,9 @@ const UserStore = (props) => {
             title, setTitle,
             payUrl, setPayUrl,
             artist, setArtist,
-            playImg, setPlayImg}}>
+            playImg, setPlayImg,
+            allPlay, setAllPlay,
+            randomPlay, setRandomPlay}}>
             {props.children}
         </UserContext.Provider>   
     );

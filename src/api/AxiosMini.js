@@ -1,9 +1,6 @@
 import axios from "axios";
 const Story_Board = "http://localhost:8111";
 
-
-
-
 const AxiosMini = {
      // 로그인
      memberLogin: async(id, pw) => {    
@@ -101,6 +98,22 @@ const AxiosMini = {
             code : code
         }
         return await axios.post(Story_Board + `/verify`, check);
+    },
+    // 노래 좋아요
+    songLike : async(id, songId) => {
+        const like = {
+            id : id,
+            songId : songId 
+        }
+        return await axios.post(Story_Board + "/songLike", like);
+    },
+    // 노래 좋아요 삭제
+    songLikeDelete : async(id, songId) => {
+        const likeDelete = {
+            id : id,
+            songId : songId
+        }
+        return await axios.post(Story_Board + "/songLikeDelete", likeDelete);
     }
 };
 
