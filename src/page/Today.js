@@ -86,6 +86,7 @@ const Button= styled.button`
     justify-content: center;
     text-align: center;
     transition: ease 0.3s;   
+
     &:hover{
         background-color: white;
         color: #BB2649;
@@ -113,25 +114,27 @@ const Button= styled.button`
 
 
 const CHART = styled.div`
-width: 100%;
-margin: 0;
-padding: 0;
-.nowSelect{
-    background-color: #BB2649;
-    color: black;
-    font-weight: bolder;
-    font-size: 29px;
     width: 100%;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;    
- 
-}
+    margin: 0;
+    padding: 0;
+
+    .nowSelect{
+        background-color: #BB2649;
+        color: black;
+        font-weight: bolder;
+        font-size: 29px;
+        width: 100%;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;    
+    }
 `;
 
+
 const categories=[
+     //버튼을 카테고리로 분류하여 값을 쉽게 가져오기 위해 name으로 설정한다.
     {
         name:"NEW ALBUM"
     },

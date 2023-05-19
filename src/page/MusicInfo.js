@@ -96,6 +96,9 @@ const Container=styled.div`
         }
     }
 `;
+
+
+
 const MusicInfo=()=>{
     const context = useContext(UserContext);
     const {songTitle,songArtist,albumName,lyrics, coverUrl, setPlaying ,playing, songUrl, setPlayImg, setArtist, setTitle, Audio, setCurrentSong, currentSong} = context;

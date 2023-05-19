@@ -92,15 +92,15 @@ const Player = () => {
         }
     }
     const skipBack = () => {
-        const index = playingIndex; // 인덱스를 현재 재생중인 노래의 인덱스로 설정
-        if(index == 0) {            // 제일 첫번째 곡일 경우
+        const index = playingIndex;     // 인덱스를 현재 재생중인 노래의 인덱스로 설정
+        if(index == 0) {                // 제일 첫번째 곡일 경우
             setPlayingIndex(chart.length-1);    // 인덱스를 노래 데이터 가장 마지막 곡 인덱스로 설정
             setPlaying(true);   // 재생상태 변경
             Audio.current.src = chart[chart.length-1].song_url;    // audio의 src를 마지막곡 url로 설정
             setTitle(chart[chart.length-1].title);                 // 타이틀을 현재 재생중인 노래의 타이틀로 설정
             setArtist(chart[chart.length-1].artist);               // 아티스트를 현재 재생중인 노래의 아티스트로 설정 
             setPlayImg(chart[chart.length-1].cover_url);           // 앨범 이미지를 현재 재생중인 노래의 이미지로 설정
-        } else {                    // 첫번째 곡이 아닌 나머지 경우
+        } else {                        // 첫번째 곡이 아닌 나머지 경우
             setPlayingIndex(index-1);   // 이전 노래로 인덱스 설정
             setPlaying(true);
             Audio.current.src = chart[index-1].song_url;
@@ -111,15 +111,15 @@ const Player = () => {
         Audio.current.play();
     }
     const skipNext = () => {
-        const index = playingIndex;     // 인덱스를 현재 재생중인 노래의 인덱스로 설정
-        if(index == chart.length - 1) { // 제일 마지막 곡일 경우
-            setPlayingIndex(0);         // 인덱스를 첫번째 곡 인덱스로 설정
+        const index = playingIndex;         // 인덱스를 현재 재생중인 노래의 인덱스로 설정
+        if(index == chart.length - 1) {     // 제일 마지막 곡일 경우
+            setPlayingIndex(0);             // 인덱스를 첫번째 곡 인덱스로 설정
             setPlaying(true);
             Audio.current.src = chart[0].song_url;      // audio의 src를 첫번째곡 url로 설정
             setTitle(chart[0].title);
             setArtist(chart[0].artist);
             setPlayImg(chart[0].cover_url);
-        } else {                        // 마지막 곡이 아닌 나머지 경우
+        } else {                            // 마지막 곡이 아닌 나머지 경우
             setPlayingIndex(index + 1);     // 다음 노래로 인덱스 설정
             setPlaying(true);
             Audio.current.src = chart[index+1].song_url;
@@ -131,10 +131,10 @@ const Player = () => {
     }
 
     const checkWidth = (e) => {
-        let width = clickRef.current.clientWidth;   // 참조하는 요소의 너비
-        const offset = e.nativeEvent.offsetX;   // 클릭 이벤트가 발생한 위치의 x좌표를 가져옴
+        let width = clickRef.current.clientWidth;       // 참조하는 요소의 너비
+        const offset = e.nativeEvent.offsetX;           // 클릭 이벤트가 발생한 위치의 x좌표를 가져옴
 
-        const divprogress = offset / width * 100;   // 클릭한 x좌표를 너비로 나누고 백분율 형태로 계산
+        const divprogress = offset / width * 100;       // 클릭한 x좌표를 너비로 나누고 백분율 형태로 계산
         Audio.current.currentTime = divprogress / 100 * currentSong.length; // 오디오 요소 currentTime을 업데이트
     }
 

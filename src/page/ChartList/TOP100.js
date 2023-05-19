@@ -121,10 +121,10 @@ const TOP100=()=>{
             if(value === "FALSE") {
                 navigate("/LoginPage");
             } else {
-            const id = window.localStorage.getItem("userIdSuv");
-            console.log(id);
-            setClicked([...clicked, index]); // cliked 배열에 추가
-        }
+                const id = window.localStorage.getItem("userIdSuv");
+                console.log(id);
+                setClicked([...clicked, index]); // cliked 배열에 추가
+            }
         }
     }
 
@@ -171,4 +171,6 @@ const TOP100=()=>{
     </Body>
     );
 };
+
+
 export default TOP100;

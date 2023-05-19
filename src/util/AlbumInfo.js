@@ -1,123 +1,128 @@
-import React ,{useContext, useEffect}from "react";
+import React ,{ useEffect }from "react";
 import styled from "styled-components";
 import AxiosMini from "../api/AxiosMini";
 import { useState } from "react";
 
 const Container=styled.div`
-padding: 10px;
-width: 100%;
-height: calc(100vh - 40px);
-display: flex;
-color: white;
-
-@media only screen and (max-width: 1000px){
-    flex-direction: column;
-}
-
-
-.partition{
-    margin: auto;
+    padding: 10px;
+    width: 100%;
+    height: calc(100vh - 40px);
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 50%;
-    height: 80%;
+    color: white;
     //화면창이 1000px이하 일 떄  화면구성이 바뀐다.
     @media only screen and (max-width: 1000px){
-        width: 80%;
-        height: 50%;
-    }
-    //파티션 안에 들어있는 이미지.
-    img{
-        width: 80%;
-        height: auto;
-        @media only screen and (max-width: 1000px){
-            width: auto;
-            height: 80%;
-        }
-    }
-    .songInfo{
-        display: flex;
         flex-direction: column;
+    }
+
+
+    .partition{
+        margin: auto;
+        display: flex;
         justify-content: center;
-        width: 80%;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 50%;
         height: 80%;
-         //화면창이 1000px이하 일 떄  화면구성이 바뀐다.
+        //화면창이 1000px이하 일 떄  화면구성이 바뀐다.
         @media only screen and (max-width: 1000px){
-            width: 90%;
-            height: 90%;
+            width: 80%;
+            height: 50%;
         }
-        .infoArea{
-            display: flex;
-            width: 100%;
-            height: 80px;
-            .title{
-                width: 60%;
-                height: 100%;
-                font-size: 25px;
-                font-weight: bolder;
-                line-height: 38px;
-                @media only screen and (max-width: 1000px){
-                    font-size: 1.2rem;
-                }
+        //파티션 안에 들어있는 이미지.
+        img{
+            width: 80%;
+            height: auto;
+            @media only screen and (max-width: 1000px){
+                width: auto;
+                height: 80%;
             }
-            .artist{
-                width: 40%;
-                height: 100%;
-                font-size: 15px;
-                font-weight: bolder;
-                line-height: 38px;
-                text-align: end;
-                @media only screen and (max-width: 1000px){
-                    font-size: 1rem;
-                 }
-             }  
         }
 
-
-        .album{
+        .songInfo{
             display: flex;
-            width: 100%;
-            height: 80px;
-       
-            .albumName{
-                width: 60%;
-                height: 100%;
-                font-size: 18px;
-                font-weight: bolder;
-                line-height: 38px;
-                @media only screen and (max-width: 1000px){
-                    font-size: 1rem;
-                }
+            flex-direction: column;
+            justify-content: center;
+            width: 80%;
+            height: 80%;
+            //화면창이 1000px이하 일 떄  화면구성이 바뀐다.
+            @media only screen and (max-width: 1000px){
+                width: 90%;
+                height: 90%;
             }
-            .release{
-                width: 40%;
-                font-size: 12px;
-                font-weight: bolder;
-                text-align: end;
-                @media only screen and (max-width: 1000px){
-                    font-size: 12px;
-                 }
-             }
-        };
+
+            .infoArea{
+                display: flex;
+                width: 100%;
+                height: 80px;
+
+                .title{
+                    width: 60%;
+                    height: 100%;
+                    font-size: 25px;
+                    font-weight: bolder;
+                    line-height: 38px;
+                    //화면창이 1000px이하 일 떄  화면구성이 바뀐다.
+                    @media only screen and (max-width: 1000px){
+                        font-size: 1.2rem;
+                    }
+                }
+
+                .artist{
+                    width: 40%;
+                    height: 100%;
+                    font-size: 15px;
+                    font-weight: bolder;
+                    line-height: 38px;
+                    text-align: end;
+                    //화면창이 1000px이하 일 떄  화면구성이 바뀐다.
+                    @media only screen and (max-width: 1000px){
+                        font-size: 1rem;
+                    }
+                }  
+            }
+
+            .album{
+                display: flex;
+                width: 100%;
+                height: 80px;
         
-        // 앨범정보
-        .Info{
+                .albumName{
+                    width: 60%;
+                    height: 100%;
+                    font-size: 18px;
+                    font-weight: bolder;
+                    line-height: 38px;
+                    @media only screen and (max-width: 1000px){
+                        font-size: 1rem;
+                    }
+                }
+
+                .release{
+                    width: 40%;
+                    font-size: 12px;
+                    font-weight: bolder;
+                    text-align: end;
+                    @media only screen and (max-width: 1000px){
+                        font-size: 12px;
+                    }
+                }
+            };
+            
+            // 앨범정보
+            .Info{
                 margin-top: 50px;
                 font-size: 1.2rem;
                 height: 50%;
                 overflow-y: scroll;
                 @media only screen and (max-width: 800px){
                     margin: 0;
-                 }
+                }
                 ::-webkit-scrollbar {
                     display: none;
-            }
-          
-        }  
+                }
+            }  
+        }
     }
-}
 `;
 
 
@@ -141,6 +146,7 @@ const ModalStyle = styled.div`
         /* 팝업이 열릴때 스르륵 열리는 효과 */
         animation: modal-bg-show 0.8s;
     }
+
     button {
         top: 5%;
         right: 120px;
@@ -158,8 +164,7 @@ const ModalStyle = styled.div`
         }
     }
 
-
-       section {
+    section {
         width: 90%;
         height: 100%;
         margin: 0 auto;
@@ -178,6 +183,7 @@ const AlbumInfo = (props) => {
 
     useEffect(()=> {
         const song = async() => {
+            // 서버로부터 앨범 데이터 요청
             const rsp = await AxiosMini.album("*");
             console.log(rsp);   
             if(rsp.status === 200) setAlbum(rsp.data); 
@@ -233,5 +239,6 @@ const AlbumInfo = (props) => {
         </ModalStyle>
     );
 };
+
 
 export default AlbumInfo;
