@@ -68,7 +68,7 @@ const MemberShip =()=>{
               partner_order_id: 'partner_order_id', // 가맹점 주문번호
               partner_user_id: 'partner_user_id', // 가맹점 회원 ID
               item_name: 'AEL 맴버십 1개월',
-              quantity: 1,
+              quantity: 30,
               total_amount: 5500, // 결제 금액
               tax_free_amount: 0,
               approval_url: 'http://localhost:3000/', // 결제 성공 시 리다이렉트할 URL
@@ -82,10 +82,10 @@ const MemberShip =()=>{
               },
             }
           );
-
-
+          const quantity = 30;
           console.log(response.data); // 결제 요청 결과 확인
           console.log(response.data.next_redirect_pc_url);
+          console.log(quantity);
         setPayUrl(response.data.next_redirect_pc_url);    
 
         } catch (error) {
@@ -103,8 +103,8 @@ const MemberShip =()=>{
             partner_order_id: 'partner_order_id', // 가맹점 주문번호
             partner_user_id: 'partner_user_id', // 가맹점 회원 ID
             item_name: 'AEL 맴버십 3개월',
-            quantity: 1,
-            total_amount: 12800, // 결제 금액
+            quantity: 90,
+            total_amount: 13200, // 결제 금액
             tax_free_amount: 0,
             approval_url: 'http://localhost:3000/', // 결제 성공 시 리다이렉트할 URL
             cancel_url: 'hhttp://localhost:3000/kakaoPay', // 결제 취소 시 리다이렉트할 URL
@@ -117,9 +117,12 @@ const MemberShip =()=>{
             },
           }
         );
+        const quantity = 90;
         console.log(response.data); // 결제 요청 결과 확인
         console.log(response.data.next_redirect_pc_url);
-        setPayUrl(response.data.next_redirect_pc_url);          
+        console.log(quantity);
+        setPayUrl(response.data.next_redirect_pc_url);
+
       } catch (error) {
         console.error("에러입니다2.");
         console.error(error);
