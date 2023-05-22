@@ -152,7 +152,7 @@ const Agreement = () => { // 필수조건을 체크해야 버튼이 활성화 �
                 </p>
             </div>
             <div className="btn">
-                <Link to="/home">
+                <Link to="/">
                     <input type="button" className="cancleBtn" value={'취소'}/>
                 </Link>
                 {/* 조건이 만족하면 버튼이 활성화 되어 다음 페이지로 넘어감 */}
