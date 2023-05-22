@@ -71,7 +71,7 @@ const MemberShip =()=>{
               quantity: 1,
               total_amount: 5500, // 결제 금액
               tax_free_amount: 0,
-              approval_url: 'http://localhost:3000/', // 결제 성공 시 리다이렉트할 URL
+              approval_url: 'http://localhost:3000/PayResult', // 결제 성공 시 리다이렉트할 URL
               cancel_url: 'hhttp://localhost:3000/kakaoPay', // 결제 취소 시 리다이렉트할 URL
               fail_url: 'http://localhost:3000/kakaoPay', // 결제 실패 시 리다이렉트할 URL
             },   
@@ -86,6 +86,8 @@ const MemberShip =()=>{
 
           console.log(response.data); // 결제 요청 결과 확인
           console.log(response.data.next_redirect_pc_url);
+          console.log(response.data.tid);
+          window.localStorage.setItem("tid", response.data.tid);
         setPayUrl(response.data.next_redirect_pc_url);    
 
         } catch (error) {
@@ -106,7 +108,7 @@ const MemberShip =()=>{
             quantity: 1,
             total_amount: 12800, // 결제 금액
             tax_free_amount: 0,
-            approval_url: 'http://localhost:3000/', // 결제 성공 시 리다이렉트할 URL
+            approval_url: 'http://localhost:3000/PayResult', // 결제 성공 시 리다이렉트할 URL
             cancel_url: 'hhttp://localhost:3000/kakaoPay', // 결제 취소 시 리다이렉트할 URL
             fail_url: 'http://localhost:3000/kakaoPay', // 결제 실패 시 리다이렉트할 URL
           },   
