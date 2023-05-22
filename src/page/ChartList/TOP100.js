@@ -188,7 +188,6 @@ const TOP100=()=>{
         setCurrentSong({...currentSong, "progress" : ct / duration * 100, "length":duration});
     }
 
-
     return(
         <Body>
         {chart && chart.map((x, index) => (
