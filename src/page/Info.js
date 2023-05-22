@@ -12,14 +12,18 @@ const Body = styled.div`
     width: calc(100vw - 300px);
     height: calc(100vh - 50px);
     display: flex;
+    /* border: 1px solid white; */
+    flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
     background-color: black;
     position: fixed;
+    
 `;
 
 const Container = styled.div`
+/* border: 1px solid white; */
      margin: 8px 18px 8px 8px;
         width: 100%;
         height: 100px;
