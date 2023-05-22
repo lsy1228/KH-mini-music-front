@@ -196,7 +196,7 @@ const Sidemenu = [
   //버튼을 카테고리로 분류하여 값을 쉽게 가져오기 위해 name으로 설정한다.
   { name : "Today"},
   { name : "차트"},
-  { name : "이달의 정보"},
+  { name : "플레이리스트"},
   { name : "추천플레이리스트"}
 ]
 
@@ -322,7 +322,7 @@ const Home =() => {
                 {changeSide === "마이페이지" && <MyPage changePage={cPage}/>}
                 {changeSide === "Today" && <Today/>}    
                 {changeSide === "차트" && <Chart/>}      
-                {changeSide === "이달의 정보" && <Info/>}  
+                {changeSide === "플레이리스트" && <Info/>}  
                 {changeSide === "추천플레이리스트" && <Playlist/>}     
                 {changeSide === "Enter" && <MusicInfo/>} 
                 {changeSide === "맴버십" && <MemberShip/>} 

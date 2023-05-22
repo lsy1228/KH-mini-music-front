@@ -114,6 +114,9 @@ const AxiosMini = {
             songId : songId
         }
         return await axios.post(Story_Board + "/songLikeDelete", likeDelete);
+    },
+    myPlaylist : async(id) => {
+        return await axios.get(Story_Board + `/myPlaylist/?id=${id}`);
     }
 };
 
