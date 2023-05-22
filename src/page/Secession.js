@@ -9,7 +9,7 @@ import { UserContext } from "../context/UserInfo";
 
 const Body = styled.div`
     width: calc(100vw - 300px);
-    height: 100vh;
+    height: calc(100vh - 50px);
     min-width: 400px;
     position: fixed;
     display: flex;

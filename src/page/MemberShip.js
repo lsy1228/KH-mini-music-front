@@ -9,7 +9,7 @@ import { UserContext } from "../context/UserInfo";
 const Container=styled.div`
   width: calc(100vw - 300px);
   min-width: 600px;
-  height: 100vh;
+  height: calc(100vh - 50px);
   background: linear-gradient(150deg,#BB2649, rgb(0,0,0) 1200px);
   color: white;
   display: flex;
