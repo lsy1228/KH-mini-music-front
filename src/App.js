@@ -15,6 +15,7 @@ import MusicInfo from './page/MusicInfo';
 import MemberShip from './page/MemberShip';
 import SearchId from './page/searchId';
 import SearchPw from './page/searchPw';
+import PayResult from './page/PayResult';
 
 
 
@@ -39,7 +40,8 @@ function App() {
           <Route path='/MusicInfo' element={<MusicInfo/>}/>
           <Route path='/MemberShip' element={<MemberShip/>}/>
           <Route path='/SearchId' element={<SearchId/>}/>
-          <Route path='/SearchPw' element={<SearchPw/>}/>
+          <Route path='/SearchPw' element={<SearchPw/>}/>          
+          <Route path='/PayResult' element={<PayResult/>}/>
         </Routes>
      </Router>
     </UserStore>
