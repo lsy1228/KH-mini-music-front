@@ -271,13 +271,20 @@ const Chart=()=>{
         }
     }
 
+       //로컬스토리지값을 지움으로써 로그아웃상태로 만든다.
+       const onLogOut=()=>{
+        window.localStorage.setItem("userIdSuv", "");
+        window.localStorage.setItem("isLoginSuv", "FALSE");
+        window.location.replace("/");
+      };
+
 
     return(
         <Body>
             <BackHead>
                 <a href="/"><Link to="/">HOME</Link></a>
                 {isLogin==="FALSE" && <a href="#"><Link to="/Loginpage">LOGIN</Link></a>}
-                {isLogin==="TRUE" && <a href="#" className="logTrue">반갑습니다 {isUserIdSrt}님<button className="logout" onClick={onClickLogout}>로그아웃</button></a>}
+                {isLogin==="TRUE" && <a href="#" className="logTrue">반갑습니다 {isUserIdSrt}님<button className="logout" onClick={onLogOut}>로그아웃</button></a>}
             </BackHead>
             
             <Head>
