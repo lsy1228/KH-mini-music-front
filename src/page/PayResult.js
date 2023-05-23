@@ -1,11 +1,10 @@
-import React from "react";
+import React  from "react";
 import axios from "axios";
-import { styled } from "styled-components";
 import { useLocation } from "react-router-dom";
+import styled from "styled-components";
 
 
-const Button =styled.button`
-
+const Button = styled.button`
 `
 const PayResult =()=>{
     //apprval_url 을 통해서 받아온 현재 주소에는 pg_token값이 붙어있다. 이를 추출하여야 함
@@ -17,8 +16,10 @@ const PayResult =()=>{
     //=뒤에 붙은 pg_token값을 가져온다.
     const pgToken = url.split('=')[1];
     //최종 token값이 완성된다.
-    console.log(pgToken);
-    const handleApprove = async () => {    
+    console.log(pgToken);   
+    console.log(window.localStorage.getItem("tid"));
+
+    const handleApprove = async () => {   
         try {       
           const response = await axios.post(
             'https://kapi.kakao.com/v1/payment/approve',    
@@ -41,7 +42,7 @@ const PayResult =()=>{
           console.log(response.data.amount); // 가격확인
           console.log(response.data.amount.total); // 가격확인
           console.log(response.data.quantity); //수량 확인
-          window.close();//결제 완료후 창이 닫긴다.
+          // window.close();//결제 완료후 창이 닫긴다.
           
         } catch (error) {
           console.error("에러입니다1.");
