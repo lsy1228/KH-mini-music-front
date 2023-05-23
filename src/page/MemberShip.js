@@ -58,6 +58,7 @@ const MemberShip =()=>{
     const context = useContext(UserContext);
     const {setPayUrl,payUrl} = context; 
     
+    
     //카카오 결제로 들어가는 axios
     const handlePayment1m = async () => {    
         try {
@@ -71,25 +72,22 @@ const MemberShip =()=>{
               quantity: 30,
               total_amount: 5500, // 결제 금액
               tax_free_amount: 0,
-              approval_url: 'http://localhost:3000/PayResult', // 결제 성공 시 리다이렉트할 URL
-              cancel_url: 'hhttp://localhost:3000/kakaoPay', // 결제 취소 시 리다이렉트할 URL
-              fail_url: 'http://localhost:3000/kakaoPay', // 결제 실패 시 리다이렉트할 URL
+              approval_url: 'http://192.168.10.228:3000/PayResult', // 결제 성공 시 리다이렉트할 URL
+              cancel_url: 'http://192.168.10.228:3000/kakaoPay', // 결제 취소 시 리다이렉트할 URL
+              fail_url: 'http://192.168.10.228:3000/kakaoPay', // 결제 실패 시 리다이렉트할 URL
             },   
             {
               headers: {
-                Authorization: `KakaoAK 02be1b58e11c4a0376b6ad075800f833`,       // 카카오톡 API 접속 로그인 후 내 애플리케이션 Admin키 저장 
+                Authorization: `KakaoAK 76a5c5372efe9d4173b623ad46345210`,
                 "Content-type": `application/x-www-form-urlencoded;charset=utf-8`
               },
             }
           );
-          const quantity = 30;
           console.log(response.data); // 결제 요청 결과 확인
           console.log(response.data.next_redirect_pc_url);
-          console.log(quantity);
           console.log(response.data.tid);
           window.localStorage.setItem("tid", response.data.tid);
-        setPayUrl(response.data.next_redirect_pc_url);    
-
+          setPayUrl(response.data.next_redirect_pc_url);    
         } catch (error) {
           console.error("에러입니다1.");
           console.error(error);
@@ -108,21 +106,20 @@ const MemberShip =()=>{
             quantity: 90,
             total_amount: 13200, // 결제 금액
             tax_free_amount: 0,
-            approval_url: 'http://localhost:3000/PayResult', // 결제 성공 시 리다이렉트할 URL
-            cancel_url: 'hhttp://localhost:3000/kakaoPay', // 결제 취소 시 리다이렉트할 URL
-            fail_url: 'http://localhost:3000/kakaoPay', // 결제 실패 시 리다이렉트할 URL
+            approval_url: 'http://192.168.10.228:3000/PayResult', // 결제 성공 시 리다이렉트할 URL
+            cancel_url: 'http://192.168.10.228:3000/kakaoPay', // 결제 취소 시 리다이렉트할 URL
+            fail_url: 'http://192.168.10.228:3000/kakaoPay', // 결제 실패 시 리다이렉트할 URL
           },   
           {
             headers: {
-              Authorization: `KakaoAK 02be1b58e11c4a0376b6ad075800f833`,
+              Authorization: `KakaoAK 76a5c5372efe9d4173b623ad46345210`,
               "Content-type": `application/x-www-form-urlencoded;charset=utf-8`
             },
           }
         );
-        const quantity = 90;
         console.log(response.data); // 결제 요청 결과 확인
         console.log(response.data.next_redirect_pc_url);
-        console.log(quantity);
+        console.log(response.data.tid);
         window.localStorage.setItem("tid", response.data.tid);
         setPayUrl(response.data.next_redirect_pc_url);
 
@@ -131,8 +128,6 @@ const MemberShip =()=>{
         console.error(error);
       }
   };
-
-
   
     return(
         <Container>
