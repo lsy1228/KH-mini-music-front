@@ -3,8 +3,20 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
+const Container= styled.div`
+width: 100%;
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+background: linear-gradient(150deg,#BB2649, rgb(0,0,0) 1200px);
+`
 
 const Button = styled.button`
+border: none;
+height:30px;
+border-radius: 4px;
+background-color: rgba(255,255,255,0.7);
 `
 const PayResult =()=>{
     //apprval_url 을 통해서 받아온 현재 주소에는 pg_token값이 붙어있다. 이를 추출하여야 함
@@ -51,10 +63,11 @@ const PayResult =()=>{
     };
 
     return (
+      <Container>
         <Button onClick={handleApprove}>
                 버튼을 누르면 결제가 완료됩니다.
         </Button>
-
+        </Container>
     )
 }
 export default PayResult;
