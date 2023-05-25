@@ -56,11 +56,12 @@ const Container=styled.div`
 const MemberShip =()=>{
     //컨텍스트에 카카오결제 페이지를 저장한다.
     const context = useContext(UserContext);
-    const {setPayUrl,payUrl} = context; 
+    const {setPayUrl,payUrl,totalPrice,setTotalPrice} = context; 
     
     
     //카카오 결제로 들어가는 axios
     const handlePayment1m = async () => {    
+      setTotalPrice(10000);
         try {
           const response = await axios.post(
             'https://kapi.kakao.com/v1/payment/ready',    
@@ -70,7 +71,7 @@ const MemberShip =()=>{
               partner_user_id: 'partner_user_id', // 가맹점 회원 ID
               item_name: 'AEL 맴버십 1개월',
               quantity: 30,
-              total_amount: 5500, // 결제 금액
+              total_amount: totalPrice, // 결제 금액
               tax_free_amount: 0,
               approval_url: 'http://192.168.10.228:3000/PayResult', // 결제 성공 시 리다이렉트할 URL
               cancel_url: 'http://192.168.10.228:3000/kakaoPay', // 결제 취소 시 리다이렉트할 URL
