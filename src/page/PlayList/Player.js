@@ -158,7 +158,7 @@ const Player = () => {
         Audio.current.play();
 
         if(randomPlay === true) {                               // 랜덤 재생이 true이면
-            const randomInt = Math.floor(Math.random() * 10);   // 0 ~ 9까지의 랜덤 난수 생성
+            const randomInt = Math.floor(Math.random() * chart.length);   // 0 ~ 9까지의 랜덤 난수 생성
             setPlayingIndex(randomInt);                         // playingIndex를 랜덤 난수로 설정
             setPlaying(true);
             Audio.current.src = chart[randomInt].song_url;

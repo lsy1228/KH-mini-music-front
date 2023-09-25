@@ -109,6 +109,7 @@ const TOP100=()=>{
             if(rsp.status === 200) setChart(rsp.data);
         };
         chartSong();
+        console.log(clicked);
 
     }, [clicked]);
     
@@ -130,6 +131,26 @@ const TOP100=()=>{
 
 
 
+    // const playPause = (index) => {
+    //     if(playing && playingIndex === index) { // 현재 재생중이고 인덱스가 같으면
+    //         setPlaying(false);
+    //         Audio.current.pause();  // 곡을 멈춤
+    //     } else {        // 재생중이 아니면
+    //         setPlaying(true);
+    //         setPlayingIndex(index);     // 재생 중인 곡의 인덱스를 변경
+    //         if(playingIndex === index) {
+    //             setPlaying(true);
+    //             Audio.current.play();
+    //         } else {
+    //         Audio.current.src = chart[index].song_url;  // audio의 src를 해당 곡의 url로 변경
+    //         Audio.current.play();   // 곡 재생
+    //         setTitle(chart[index].title);
+    //         setArtist(chart[index].artist);
+    //         setPlayImg(chart[index].cover_url);
+    //         }
+    //     };
+    // };
+
     const playPause = (index) => {
         if(playing && playingIndex === index) { // 현재 재생중이고 인덱스가 같으면
             setPlaying(false);
@@ -137,17 +158,12 @@ const TOP100=()=>{
         } else {        // 재생중이 아니면
             setPlaying(true);
             setPlayingIndex(index);     // 재생 중인 곡의 인덱스를 변경
-            if(playingIndex === index) {
-                setPlaying(true);
-                Audio.current.play();
-            } else {
-            Audio.current.src = chart[index].song_url;  // audio의 src를 해당 곡의 url로 변경
-            Audio.current.play();   // 곡 재생
             setTitle(chart[index].title);
             setArtist(chart[index].artist);
             setPlayImg(chart[index].cover_url);
+            Audio.current.src = chart[index].song_url;  // audio의 src를 해당 곡의 url로 변경
+            Audio.current.play();   // 곡 재생
             }
-        };
     };
 
      // onEnded : 오디오 재생이 끝나면 실행할 함수 지정
@@ -162,14 +178,18 @@ const TOP100=()=>{
             const nextIndex = playingIndex + 1;     // 다음곡 자동재생
             setPlaying(true);
             setPlayingIndex(nextIndex);
-            Audio.current.src = chart[nextIndex].song_url;
+            if(nextIndex === chart.length) { // 다음 노래 인덱스가 차트의 길이와 같은 경우
+                setPlayingIndex(0);          // 재생 인덱스를 0으로 설정
+            }
+            Audio.current.src = chart[nextIndex % chart.length].song_url;
             Audio.current.play();
-            setTitle(chart[nextIndex].title);
-            setArtist(chart[nextIndex].artist);
-            setPlayImg(chart[nextIndex].cover_url);
+            setTitle(chart[nextIndex % chart.length].title);
+            setArtist(chart[nextIndex % chart.length].artist);
+            setPlayImg(chart[nextIndex % chart.length].cover_url);
+            
           }
           if(randomPlay === true) {
-            const randomInt = Math.floor(Math.random() * 10);   // 0 ~ 9까지의 랜덤 난수 생성
+            const randomInt = Math.floor(Math.random() * chart.length);   // 0 ~ 9까지의 랜덤 난수 생성
             setPlayingIndex(randomInt);                         // playingIndex를 랜덤 난수로 설정
             setPlaying(true);
             Audio.current.src = chart[randomInt].song_url;

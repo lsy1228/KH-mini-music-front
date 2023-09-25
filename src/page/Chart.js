@@ -232,6 +232,7 @@ const Chart=()=>{
 
     const allplay = () => {     // 모두 재생
         setAllPlay(!allPlay);
+        setRandomPlay(randomPlay);
         if(allPlay === true) {      // 모두 재생이 true이면
             setPlaying(false);      // 재생상태 false
             Audio.current.pause();  // 노래 멈춤    

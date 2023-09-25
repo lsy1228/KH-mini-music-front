@@ -53,7 +53,8 @@ const BackHead=styled.div`
     }
 
     .logout{
-        margin-left: 8px;
+        margin-left: 5px;
+        width: 100px;
         font-size: 12px;
         border-radius: 10px;
         background-color: rgb(0,0,0, .0);

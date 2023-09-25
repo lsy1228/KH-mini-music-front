@@ -3,7 +3,6 @@ import styled, {css} from "styled-components";
 import logo from "../image/로고.png"
 import { AiOutlineUser } from "react-icons/ai";
 import Playlist from "./Playlist"
-import Info from "./Info";
 import Today from "./Today";
 import Chart from "./Chart";
 import MyPage from "./MyPage";
@@ -255,13 +254,19 @@ const Home =() => {
 
     //비동기 통신으로 받아온 노래 이름과 아티스트 이름으로 URL을 검색한다.
     const onFindSong=async()=>{
-      const songFind = await AxiosApi.songFind(inputSongName); 
-      setCoverUrl(songFind.data[0].cover_url);
-      setAlbumName(songFind.data[0].albumName);
-      setSongArtist(songFind.data[0].artist);
-      setSongTitle(songFind.data[0].title);
-      setLyrics(songFind.data[0].lyrics);
-      setSongUrl(songFind.data[0].song_url); 
+      const songFind = await AxiosApi.songFind(inputSongName);
+      // setCoverUrl(songFind.data[0].cover_url);
+      // setAlbumName(songFind.data[0].albumName);
+      // setSongArtist(songFind.data[0].artist);
+      // setSongTitle(songFind.data[0].title);
+      // setLyrics(songFind.data[0].lyrics);
+      // setSongUrl(songFind.data[0].song_url); 
+      setCoverUrl(songFind.data.cover_url);
+      setAlbumName(songFind.data.albumName);
+      setSongArtist(songFind.data.artist);
+      setSongTitle(songFind.data.title);
+      setLyrics(songFind.data.lyrics);
+      setSongUrl(songFind.data.song_url); 
     };
 
 
@@ -322,7 +327,7 @@ const Home =() => {
                 {changeSide === "마이페이지" && <MyPage changePage={cPage}/>}
                 {changeSide === "Today" && <Today/>}    
                 {changeSide === "차트" && <Chart/>}      
-                {changeSide === "플레이리스트" && <Info/>}  
+                {changeSide === "플레이리스트" && <Playlist/>}  
                 {changeSide === "추천플레이리스트" && <Playlist/>}     
                 {changeSide === "Enter" && <MusicInfo/>} 
                 {changeSide === "맴버십" && <MemberShip/>} 
